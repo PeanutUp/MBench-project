@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 390" role="img" aria-label="Entity Consistency Failure placeholder">
+  <rect width="720" height="390" fill="#FFFDF8"/>
+  <rect x="32" y="38" width="300" height="230" rx="24" fill="#F6F0FC" stroke="#E1D7F2"/>
+  <rect x="388" y="38" width="300" height="230" rx="24" fill="#F6F0FC" stroke="#E1D7F2"/>
+  <text x="182" y="300" text-anchor="middle" font-family="Arial" font-size="18" font-weight="800" fill="#3D2568">First Frame</text>
+  <text x="538" y="300" text-anchor="middle" font-family="Arial" font-size="18" font-weight="800" fill="#3D2568">Last Frame</text>
+  <path d="M335 154 H385" stroke="#6A6178" stroke-width="4" stroke-dasharray="10 9"/>
+  <path d="M374 140 L389 154 L374 168" stroke="#6A6178" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="182" cy="153" r="64" fill="#E891A8" opacity=".78"/>
+  <circle cx="538" cy="153" r="64" fill="#E891A8" opacity=".36"/>
+  <rect x="142" y="113" width="80" height="80" rx="16" fill="none" stroke="#E84A5F" stroke-width="6"/>
+  <rect x="502" y="130" width="112" height="48" rx="12" fill="none" stroke="#E84A5F" stroke-width="6"/>
+  <text x="360" y="350" text-anchor="middle" font-family="Arial" font-size="24" font-weight="800" fill="#3D2568">Entity Consistency Failure</text>
+</svg>

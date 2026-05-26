@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 620" role="img" aria-label="MBench hero illustration">
+  <defs>
+    <linearGradient id="vio" x1="118" y1="78" x2="613" y2="526" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6D4AA4"/>
+      <stop offset=".55" stop-color="#5FC6BA"/>
+      <stop offset="1" stop-color="#E891A8"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#3D2568" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <rect width="720" height="620" rx="44" fill="#FFFDF8"/>
+  <circle cx="356" cy="300" r="226" fill="#F5EFFC"/>
+  <circle cx="356" cy="300" r="172" fill="#FFFFFF" stroke="#DED1F2" stroke-width="2"/>
+  <circle cx="356" cy="300" r="108" fill="#F8F4FF" stroke="#DED1F2" stroke-width="2"/>
+  <circle cx="356" cy="300" r="44" fill="url(#vio)" filter="url(#shadow)"/>
+  <text x="356" y="307" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="20" fill="white">Memory</text>
+  <g font-family="Arial, sans-serif" font-weight="800" font-size="22" fill="#3D2568">
+    <text x="356" y="102" text-anchor="middle">Entity</text>
+    <text x="356" y="524" text-anchor="middle">Environment</text>
+    <text x="116" y="307" text-anchor="middle">Causal</text>
+    <text x="604" y="307" text-anchor="middle">Interaction</text>
+  </g>
+  <g stroke="#6D4AA4" stroke-width="3" stroke-linecap="round" opacity=".72">
+    <path d="M356 132 C440 150 505 205 532 284"/>
+    <path d="M536 327 C515 415 447 478 356 492"/>
+    <path d="M320 490 C231 468 174 401 172 312"/>
+    <path d="M173 275 C191 191 257 144 332 132"/>
+  </g>
+  <g fill="none" stroke="#5FC6BA" stroke-width="2.2" opacity=".55">
+    <path d="M250 300H470"/>
+    <path d="M356 194V406"/>
+    <path d="M280 224L432 376"/>
+    <path d="M432 224L280 376"/>
+  </g>
+  <g>
+    <rect x="72" y="70" width="176" height="112" rx="24" fill="#FFFFFF" stroke="#E6DDF3"/>
+    <text x="160" y="116" text-anchor="middle" font-family="Arial" font-size="16" font-weight="800" fill="#6D4AA4">Object Texture</text>
+    <text x="160" y="142" text-anchor="middle" font-family="Arial" font-size="14" fill="#7A7188">long-horizon drift</text>
+
+    <rect x="472" y="72" width="176" height="112" rx="24" fill="#FFFFFF" stroke="#E6DDF3"/>
+    <text x="560" y="116" text-anchor="middle" font-family="Arial" font-size="16" font-weight="800" fill="#5FC6BA">Scene Layout</text>
+    <text x="560" y="142" text-anchor="middle" font-family="Arial" font-size="14" fill="#7A7188">camera re-entry</text>
+
+    <rect x="72" y="438" width="176" height="112" rx="24" fill="#FFFFFF" stroke="#E6DDF3"/>
+    <text x="160" y="482" text-anchor="middle" font-family="Arial" font-size="16" font-weight="800" fill="#E891A8">State Evolution</text>
+    <text x="160" y="508" text-anchor="middle" font-family="Arial" font-size="14" fill="#7A7188">off-screen changes</text>
+
+    <rect x="472" y="438" width="176" height="112" rx="24" fill="#FFFFFF" stroke="#E6DDF3"/>
+    <text x="560" y="482" text-anchor="middle" font-family="Arial" font-size="16" font-weight="800" fill="#6D4AA4">M-Score</text>
+    <text x="560" y="508" text-anchor="middle" font-family="Arial" font-size="14" fill="#7A7188">coverage + reliability</text>
+  </g>
+</svg>

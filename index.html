@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MBench: A Comprehensive Benchmark on Memory Capability for Video World Models." />
+  <meta property="og:title" content="MBench" />
+  <meta property="og:description" content="A benchmark for evaluating memory capability in video world models." />
+  <meta property="og:image" content="assets/hero-memory.svg" />
+  <meta name="theme-color" content="#6D4AA4" />
+  <title>MBench | Memory Capability for Video World Models</title>
+  <link rel="icon" href="assets/logo.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="MBench home">
+        <img src="assets/logo.svg" alt="" />
+        <span>MBench</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#overview">Overview</a>
+        <a href="#taxonomy">Taxonomy</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#results">Results</a>
+        <a href="#dataset">Dataset</a>
+        <a href="#citation">Citation</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="hero-copy">
+          <p class="eyebrow">Benchmark · Video World Models · Long-Term Memory</p>
+          <h1>MBench: A Comprehensive Benchmark on Memory Capability for Video World Models</h1>
+          <p class="subtitle">
+            A standardized evaluation suite for diagnosing whether video world models can preserve
+            entities, environments, and causal state over long horizons and complex interactions.
+          </p>
+
+          <div class="authors">
+            <span>Shengjun Zhang<sup>*</sup></span>
+            <span>Zhang Zhang<sup>*</sup></span>
+            <span>Simin Huang</span>
+            <span>Zhenyu Tang</span>
+            <span>Ruofeng Yang</span>
+            <span>Hanyang Wang</span>
+            <span>et al.</span>
+          </div>
+          <p class="affiliations">THU · WeChat Vision, Tencent Inc. · PKU · SJTU</p>
+
+          <div class="button-row">
+            <a class="button primary" href="YOUR_ARXIV_OR_PAPER_LINK">📄 Paper</a>
+            <a class="button" href="https://github.com/study-overflow/MBench">💻 Code</a>
+            <a class="button" href="#dataset">🧩 Dataset</a>
+            <a class="button" href="#results">🏆 Leaderboard</a>
+          </div>
+
+          <div class="status-strip" aria-label="Project highlights">
+            <div><strong>3</strong><span>Memory Axes</span></div>
+            <div><strong>12</strong><span>Sub-dimensions</span></div>
+            <div><strong>Text + Action</strong><span>Conditioning</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <img src="assets/hero-memory.svg" alt="Stylized MBench memory benchmark overview" />
+        </div>
+      </section>
+
+      <section id="overview" class="section narrow">
+        <h2>Why MBench?</h2>
+        <p class="lead">
+          Existing video-generation benchmarks often focus on visual quality, motion coherence, or prompt
+          alignment. MBench instead asks a world-model question: can a generated world remember what should
+          remain stable, what should evolve, and what causal consequences should persist?
+        </p>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="icon-pill entity">E</div>
+            <h3>Entity Consistency</h3>
+            <p>Tracks object geometry, texture, human identity, and appearance across occlusion and re-entry.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-pill environment">V</div>
+            <h3>Environment Consistency</h3>
+            <p>Measures whether scene layout, projection, lighting, and rendering style remain stable over time.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-pill causal">C</div>
+            <h3>Causal Consistency</h3>
+            <p>Evaluates self-evolution, interaction, instruction following, and action-conditioned dynamics.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="media-panel">
+          <div>
+            <p class="eyebrow">Teaser Video</p>
+            <h2>Long-horizon memory failures exposed by MBench</h2>
+            <p>
+              Replace this placeholder with a compressed MP4/GIF teaser showing representative
+              entity, environment, and causal failures. Keep it under ~20 MB for smooth GitHub Pages loading.
+            </p>
+          </div>
+          <div class="video-placeholder">
+            <video controls poster="assets/teaser-poster.svg">
+              <source src="assets/teaser.mp4" type="video/mp4" />
+            </video>
+            <span class="placeholder-note">assets/teaser.mp4</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="taxonomy" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Benchmark Taxonomy</p>
+          <h2>Three-level memory evaluation hierarchy</h2>
+          <p>
+            The page reserves space for your final Figure 1, but also provides editable cards for fast
+            explanation before the paper figures are finalized.
+          </p>
+        </div>
+
+        <div class="taxonomy-layout">
+          <div class="taxonomy-figure card">
+            <img src="assets/taxonomy.svg" alt="MBench taxonomy placeholder" />
+          </div>
+
+          <div class="accordion card">
+            <details open>
+              <summary>Entity Consistency</summary>
+              <ul>
+                <li><strong>Object:</strong> geometry consistency, texture consistency.</li>
+                <li><strong>Human:</strong> identity consistency, appearance consistency.</li>
+              </ul>
+            </details>
+            <details>
+              <summary>Environment Consistency</summary>
+              <ul>
+                <li><strong>Spatial:</strong> epipolar geometry, reprojection consistency.</li>
+                <li><strong>Rendering:</strong> lighting consistency, style consistency.</li>
+              </ul>
+            </details>
+            <details>
+              <summary>Causal Consistency</summary>
+              <ul>
+                <li><strong>Self-evolution:</strong> trigger, physical/event correctness.</li>
+                <li><strong>Interaction:</strong> text-conditioned and action-conditioned instruction following.</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="pipeline" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Evaluation Protocol</p>
+          <h2>Trigger-Conditioned Scoring</h2>
+          <p>
+            MBench separates “the model actually entered a memory-demanding case” from “the model remained
+            consistent after that case happened,” reducing inflated scores from static or conservative generations.
+          </p>
+        </div>
+
+        <div class="pipeline">
+          <article class="step-card">
+            <span>01</span>
+            <h3>Curate long videos</h3>
+            <p>Collect real-captured clips with occlusion, camera motion, state changes, and interactions.</p>
+          </article>
+          <article class="step-card">
+            <span>02</span>
+            <h3>Generate prompts/actions</h3>
+            <p>Create text-conditioned continuation prompts and action-conditioned exit–wait–reenter sequences.</p>
+          </article>
+          <article class="step-card">
+            <span>03</span>
+            <h3>Verify triggers</h3>
+            <p>Use VLM checks to verify whether the memory-triggering event actually occurs.</p>
+          </article>
+          <article class="step-card">
+            <span>04</span>
+            <h3>Score consistency</h3>
+            <p>Compute reliability only on triggered samples, then combine reliability and coverage into M-Score.</p>
+          </article>
+        </div>
+
+        <div class="formula-card card">
+          <code>M-Score<sub>k</sub> = 2 × S<sup>rel</sup><sub>k</sub> × C<sup>trig</sup><sub>k</sub> / (S<sup>rel</sup><sub>k</sub> + C<sup>trig</sup><sub>k</sub>)</code>
+        </div>
+      </section>
+
+      <section id="results" class="section">
+        <div class="section-heading with-action">
+          <div>
+            <p class="eyebrow">Leaderboard</p>
+            <h2>Model performance overview</h2>
+            <p>Replace the demo numbers with your final CSV/JSON. Tabs can separate text-conditioned and action-conditioned models.</p>
+          </div>
+          <a class="button" href="https://github.com/study-overflow/MBench">Submit Results</a>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Leaderboard tabs">
+          <button class="tab active" data-tab="text">Text-conditioned</button>
+          <button class="tab" data-tab="action">Action-conditioned</button>
+        </div>
+
+        <div class="table-wrap card">
+          <table id="leaderboard" aria-label="MBench leaderboard">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Model</th>
+                <th>M-Score ↑</th>
+                <th>Entity ↑</th>
+                <th>Environment ↑</th>
+                <th>Causal ↑</th>
+                <th>Trigger ↑</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="figure-grid">
+          <figure class="result-figure card">
+            <img src="assets/failure-entity.svg" alt="Entity failure placeholder" />
+            <figcaption>Entity memory: object texture / human appearance drift.</figcaption>
+          </figure>
+          <figure class="result-figure card">
+            <img src="assets/failure-environment.svg" alt="Environment failure placeholder" />
+            <figcaption>Environment memory: scene layout / lighting drift.</figcaption>
+          </figure>
+          <figure class="result-figure card">
+            <img src="assets/failure-causal.svg" alt="Causal failure placeholder" />
+            <figcaption>Causal memory: state evolution and interaction failures.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="dataset" class="section split-section">
+        <div>
+          <p class="eyebrow">Dataset & Evaluation Kit</p>
+          <h2>Designed for long videos and explicit memory triggers</h2>
+          <p>
+            This section can hold download links, license notes, evaluation commands, and a short description
+            of the prompt/action suite. Keep private assets behind a request form if the benchmark is not public yet.
+          </p>
+          <div class="button-row">
+            <a class="button primary" href="YOUR_DATASET_LINK">Download Dataset</a>
+            <a class="button" href="YOUR_HF_SPACE_OR_LEADERBOARD">Leaderboard Space</a>
+          </div>
+        </div>
+
+        <div class="command-card card">
+          <p class="small-title">Quick Start</p>
+<pre><code>git clone https://github.com/study-overflow/MBench.git
+cd MBench
+
+# install evaluation toolkit
+pip install -r requirements.txt
+
+# run a demo evaluation
+python evaluate.py \
+  --pred_dir outputs/YOUR_MODEL \
+  --split demo</code></pre>
+        </div>
+      </section>
+
+      <section id="bibtex" class="section narrow">
+        <h2 id="citation">Citation</h2>
+        <p>Update this BibTeX once the arXiv identifier / conference version is available.</p>
+        <div class="bib-card card">
+<pre id="bibtex-block"><code>@article{zhang2026mbench,
+  title   = {MBench: A Comprehensive Benchmark on Memory Capability for Video World Models},
+  author  = {Zhang, Shengjun and Zhang, Zhang and Huang, Simin and Tang, Zhenyu and others},
+  journal = {arXiv preprint},
+  year    = {2026}
+}</code></pre>
+          <button class="button small" id="copy-bibtex">Copy BibTeX</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© MBench Team. Built with a lightweight GitHub Pages template.</p>
+      <p class="footer-links">
+        <a href="YOUR_ARXIV_OR_PAPER_LINK">Paper</a>
+        <a href="https://github.com/study-overflow/MBench">GitHub</a>
+        <a href="#top">Back to top ↑</a>
+      </p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
