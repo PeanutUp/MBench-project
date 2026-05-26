@@ -27,7 +27,6 @@ const QUALITATIVE = {
         summary: "Tests whether the geometric structure of a target object is preserved after departure-return camera motion.",
         trigger: "Trigger: object exits and re-enters the FoV",
         metric: "Metric: SSIM on SAM2 object masks",
-        metricCopy: "The paper compares viewpoint-aligned fold pairs and scores structure preservation inside the target mask.",
         paperCaption: "Figure 2 entity case: the bowl pattern and visible structure change after the memory challenge."
       },
       {
@@ -37,7 +36,6 @@ const QUALITATIVE = {
         summary: "Measures whether color, texture, and fine-grained object patterns stay invariant across long temporal gaps.",
         trigger: "Trigger: occlusion or camera re-entry",
         metric: "Metric: DINOv2 cosine similarity over SAM2 masks",
-        metricCopy: "Masked object features are compared with the global track centroid to detect long-horizon texture drift.",
         paperCaption: "Figure 2 entity case: object-level memory reveals texture and pattern drift."
       },
       {
@@ -47,7 +45,6 @@ const QUALITATIVE = {
         summary: "Checks whether a human subject remains recognizable as the same person across sampled frames and temporal gaps.",
         trigger: "Trigger: human motion, occlusion, or re-entry",
         metric: "Metric: ArcFace track-centroid similarity",
-        metricCopy: "Face embeddings are matched through a rolling-average track and compared with the identity centroid.",
         paperCaption: "Entity consistency covers both object memory and human-specific identity preservation."
       },
       {
@@ -57,7 +54,6 @@ const QUALITATIVE = {
         summary: "Evaluates whether clothing, hairstyle, accessories, and full-body appearance remain stable over the rollout.",
         trigger: "Trigger: human leaves/re-enters or is temporarily occluded",
         metric: "Metric: DINOv2 full-body feature consistency",
-        metricCopy: "SAM2 full-body masks and semantic features quantify holistic appearance retention.",
         paperCaption: "Human appearance is evaluated separately from face identity to catch holistic visual drift."
       }
     ]
@@ -75,7 +71,6 @@ const QUALITATIVE = {
         summary: "Evaluates whether non-adjacent views obey stable relative camera geometry during long-range camera motion.",
         trigger: "Trigger: camera departure-return",
         metric: "Metric: epipolar geometry error",
-        metricCopy: "DA3-estimated poses define fundamental matrices for non-adjacent frame-pair checks.",
         paperCaption: "Figure 2 environment case: scene layout changes after the model revisits the space."
       },
       {
@@ -85,7 +80,6 @@ const QUALITATIVE = {
         summary: "Checks whether triangulated 3D points project back to consistent 2D observations across revisited views.",
         trigger: "Trigger: similar camera poses at distant times",
         metric: "Metric: reprojection error",
-        metricCopy: "The score uses 3D points triangulated from matched non-adjacent views and DA3 camera parameters.",
         paperCaption: "Spatial consistency includes both relative epipolar constraints and absolute reprojection fidelity."
       },
       {
@@ -95,7 +89,6 @@ const QUALITATIVE = {
         summary: "Measures stability of global brightness, color temperature, color distribution, and shadow structure.",
         trigger: "Trigger: scene revisit under departure-return motion",
         metric: "Metric: illumination and color-shift deviation",
-        metricCopy: "CIELAB lightness maps and color-channel means are compared between corresponding segments.",
         paperCaption: "Rendering consistency targets lighting and color stability independent of geometry."
       },
       {
@@ -105,7 +98,6 @@ const QUALITATIVE = {
         summary: "Checks whether the generated video keeps a coherent visual style instead of drifting frame by frame.",
         trigger: "Trigger: long continuous rollout",
         metric: "Metric: Gram matrix distance",
-        metricCopy: "VGG feature Gram matrices measure style changes across neighboring frames.",
         paperCaption: "Environment memory also monitors rendering properties such as lighting and style."
       }
     ]
@@ -123,7 +115,6 @@ const QUALITATIVE = {
         summary: "Evaluates whether an expected off-screen physical or semantic event actually happens during generation.",
         trigger: "Trigger: event progresses outside the FoV",
         metric: "Metric: VLM progress trigger score",
-        metricCopy: "A VLM judges whether the described process is untriggered or fully actuated after re-entry.",
         paperCaption: "Figure 2 causal case: state evolution is not remembered after the off-screen interval."
       },
       {
@@ -133,7 +124,6 @@ const QUALITATIVE = {
         summary: "Checks whether triggered dynamics follow physical laws and causal logic rather than arbitrary changes.",
         trigger: "Trigger: state transition is actuated",
         metric: "Metric: gated VLM correctness score",
-        metricCopy: "Correctness is softly gated by trigger strength so untriggered events cannot receive high scores.",
         paperCaption: "Self-evolution requires both event actuation and physically sound progression."
       },
       {
@@ -143,7 +133,6 @@ const QUALITATIVE = {
         summary: "Measures whether sequential text prompts are followed and sustained across continuous video segments.",
         trigger: "Trigger: multi-segment text instruction",
         metric: "Metric: OpenCLIP text-video similarity",
-        metricCopy: "Frame embeddings are compared with the corresponding prompt embedding for each segment.",
         paperCaption: "Interaction consistency measures whether external prompts are remembered and propagated."
       },
       {
@@ -153,7 +142,6 @@ const QUALITATIVE = {
         summary: "Evaluates whether an action-conditioned model follows prescribed camera movement instructions.",
         trigger: "Trigger: exit-wait-reenter action sequence",
         metric: "Metric: 6-DoF twist cosine alignment",
-        metricCopy: "DA3-estimated camera extrinsics are converted into frame-wise twists and compared with the target action.",
         paperCaption: "Action-conditioned interaction uses an exit-wait-reenter paradigm to stress memory."
       }
     ]
@@ -217,7 +205,6 @@ function renderQualitative(axis = "entity", key) {
   setText("#memory-summary", activeItem.summary);
   setText("#memory-trigger", activeItem.trigger.replace(/^Trigger:\s*/, ""));
   setText("#memory-metric", activeItem.metric.replace(/^Metric:\s*/, ""));
-  setText("#memory-metric-copy", activeItem.metricCopy);
   setText("#memory-paper-caption", activeItem.paperCaption);
 
   const caseImage = document.querySelector("#memory-case-image");
