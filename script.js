@@ -28,10 +28,6 @@ const QUALITATIVE = {
         trigger: "Trigger: object exits and re-enters the FoV",
         metric: "Metric: SSIM on SAM2 object masks",
         metricCopy: "The paper compares viewpoint-aligned fold pairs and scores structure preservation inside the target mask.",
-        referenceCopy: "Object shape before exit",
-        generatedCopy: "Shape after re-entry",
-        referenceNote: "The initial frame establishes the object silhouette and visible structure.",
-        generatedNote: "A memory failure appears when the object returns with warped or missing geometry.",
         paperCaption: "Figure 2 entity case: the bowl pattern and visible structure change after the memory challenge."
       },
       {
@@ -42,10 +38,6 @@ const QUALITATIVE = {
         trigger: "Trigger: occlusion or camera re-entry",
         metric: "Metric: DINOv2 cosine similarity over SAM2 masks",
         metricCopy: "Masked object features are compared with the global track centroid to detect long-horizon texture drift.",
-        referenceCopy: "Texture before occlusion",
-        generatedCopy: "Texture after re-entry",
-        referenceNote: "Fine-grained markings and material cues are visible before the object leaves view.",
-        generatedNote: "A failure occurs when the returned object keeps the category but forgets detailed texture.",
         paperCaption: "Figure 2 entity case: object-level memory reveals texture and pattern drift."
       },
       {
@@ -56,10 +48,6 @@ const QUALITATIVE = {
         trigger: "Trigger: human motion, occlusion, or re-entry",
         metric: "Metric: ArcFace track-centroid similarity",
         metricCopy: "Face embeddings are matched through a rolling-average track and compared with the identity centroid.",
-        referenceCopy: "Identity anchor",
-        generatedCopy: "Identity after gap",
-        referenceNote: "The subject identity is anchored by early face observations.",
-        generatedNote: "The model should avoid gradual identity drift or subject replacement.",
         paperCaption: "Entity consistency covers both object memory and human-specific identity preservation."
       },
       {
@@ -70,10 +58,6 @@ const QUALITATIVE = {
         trigger: "Trigger: human leaves/re-enters or is temporarily occluded",
         metric: "Metric: DINOv2 full-body feature consistency",
         metricCopy: "SAM2 full-body masks and semantic features quantify holistic appearance retention.",
-        referenceCopy: "Appearance anchor",
-        generatedCopy: "Appearance after challenge",
-        referenceNote: "Clothing and visual attributes are established before the memory trigger.",
-        generatedNote: "A failure appears when the same person returns with altered clothing or attributes.",
         paperCaption: "Human appearance is evaluated separately from face identity to catch holistic visual drift."
       }
     ]
@@ -92,10 +76,6 @@ const QUALITATIVE = {
         trigger: "Trigger: camera departure-return",
         metric: "Metric: epipolar geometry error",
         metricCopy: "DA3-estimated poses define fundamental matrices for non-adjacent frame-pair checks.",
-        referenceCopy: "Scene layout before motion",
-        generatedCopy: "Layout after revisit",
-        referenceNote: "The first view fixes the room structure and object placement.",
-        generatedNote: "A failure occurs when layout geometry no longer matches the revisited viewpoint.",
         paperCaption: "Figure 2 environment case: scene layout changes after the model revisits the space."
       },
       {
@@ -106,10 +86,6 @@ const QUALITATIVE = {
         trigger: "Trigger: similar camera poses at distant times",
         metric: "Metric: reprojection error",
         metricCopy: "The score uses 3D points triangulated from matched non-adjacent views and DA3 camera parameters.",
-        referenceCopy: "Original 3D arrangement",
-        generatedCopy: "Reprojected arrangement",
-        referenceNote: "Spatial anchors are established before camera movement.",
-        generatedNote: "The model should remember the same layout rather than inventing a shifted room.",
         paperCaption: "Spatial consistency includes both relative epipolar constraints and absolute reprojection fidelity."
       },
       {
@@ -120,10 +96,6 @@ const QUALITATIVE = {
         trigger: "Trigger: scene revisit under departure-return motion",
         metric: "Metric: illumination and color-shift deviation",
         metricCopy: "CIELAB lightness maps and color-channel means are compared between corresponding segments.",
-        referenceCopy: "Original illumination",
-        generatedCopy: "Lighting after revisit",
-        referenceNote: "The initial frames define brightness, shadows, and color temperature.",
-        generatedNote: "A failure appears when lighting changes without a causal reason.",
         paperCaption: "Rendering consistency targets lighting and color stability independent of geometry."
       },
       {
@@ -134,10 +106,6 @@ const QUALITATIVE = {
         trigger: "Trigger: long continuous rollout",
         metric: "Metric: Gram matrix distance",
         metricCopy: "VGG feature Gram matrices measure style changes across neighboring frames.",
-        referenceCopy: "Style context",
-        generatedCopy: "Style after rollout",
-        referenceNote: "The first segment establishes visual rendering style.",
-        generatedNote: "The model should not switch texture style or image statistics over time.",
         paperCaption: "Environment memory also monitors rendering properties such as lighting and style."
       }
     ]
@@ -156,10 +124,6 @@ const QUALITATIVE = {
         trigger: "Trigger: event progresses outside the FoV",
         metric: "Metric: VLM progress trigger score",
         metricCopy: "A VLM judges whether the described process is untriggered or fully actuated after re-entry.",
-        referenceCopy: "Event before hidden interval",
-        generatedCopy: "State after hidden interval",
-        referenceNote: "The initial state and expected process are established by the prompt.",
-        generatedNote: "A failure occurs when the scene returns unchanged despite the required event.",
         paperCaption: "Figure 2 causal case: state evolution is not remembered after the off-screen interval."
       },
       {
@@ -170,10 +134,6 @@ const QUALITATIVE = {
         trigger: "Trigger: state transition is actuated",
         metric: "Metric: gated VLM correctness score",
         metricCopy: "Correctness is softly gated by trigger strength so untriggered events cannot receive high scores.",
-        referenceCopy: "Physical setup",
-        generatedCopy: "Evolved state",
-        referenceNote: "The scene contains an event expected to progress naturally.",
-        generatedNote: "The resulting state should be physically plausible and causally connected.",
         paperCaption: "Self-evolution requires both event actuation and physically sound progression."
       },
       {
@@ -184,10 +144,6 @@ const QUALITATIVE = {
         trigger: "Trigger: multi-segment text instruction",
         metric: "Metric: OpenCLIP text-video similarity",
         metricCopy: "Frame embeddings are compared with the corresponding prompt embedding for each segment.",
-        referenceCopy: "Instruction context",
-        generatedCopy: "Prompt-aligned segment",
-        referenceNote: "The prompt specifies what should appear or happen in a later segment.",
-        generatedNote: "The model should remember and maintain the instruction across rollout boundaries.",
         paperCaption: "Interaction consistency measures whether external prompts are remembered and propagated."
       },
       {
@@ -198,10 +154,6 @@ const QUALITATIVE = {
         trigger: "Trigger: exit-wait-reenter action sequence",
         metric: "Metric: 6-DoF twist cosine alignment",
         metricCopy: "DA3-estimated camera extrinsics are converted into frame-wise twists and compared with the target action.",
-        referenceCopy: "Action path begins",
-        generatedCopy: "Action path returns",
-        referenceNote: "The action sequence moves the camera away from the target entity.",
-        generatedNote: "The model should return along the intended path and preserve the hidden world state.",
         paperCaption: "Action-conditioned interaction uses an exit-wait-reenter paradigm to stress memory."
       }
     ]
@@ -266,10 +218,6 @@ function renderQualitative(axis = "entity", key) {
   setText("#memory-trigger", activeItem.trigger.replace(/^Trigger:\s*/, ""));
   setText("#memory-metric", activeItem.metric.replace(/^Metric:\s*/, ""));
   setText("#memory-metric-copy", activeItem.metricCopy);
-  setText("#memory-reference-copy", activeItem.referenceCopy);
-  setText("#memory-generated-copy", activeItem.generatedCopy);
-  setText("#memory-reference-note", activeItem.referenceNote);
-  setText("#memory-generated-note", activeItem.generatedNote);
   setText("#memory-paper-caption", activeItem.paperCaption);
 
   const caseImage = document.querySelector("#memory-case-image");

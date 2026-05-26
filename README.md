@@ -8,7 +8,7 @@ This repository hosts a lightweight static project page for **MBench: A Comprehe
 ```text
 .
 ├── index.html          # page content
-├── style.css           # VBench-like academic layout
+├── style.css           # MBench academic layout and theme
 ├── script.js           # leaderboard tabs and BibTeX copy button
 ├── assets/             # MBench figures extracted from the paper plus placeholders
 └── .nojekyll           # avoids GitHub Pages Jekyll processing
@@ -18,7 +18,7 @@ This repository hosts a lightweight static project page for **MBench: A Comprehe
 
 1. Replace demo leaderboard values in `script.js` with final results.
 2. Update author affiliations and BibTeX in `index.html`.
-3. Replace placeholder video panels in the qualitative section with real `.mp4` / `.webm` clips when available.
+3. Replace paper-cropped qualitative case figures with real `.mp4` / `.webm` clips when available.
 4. Update repository, paper, dataset, or leaderboard links once public.
 
 ## Paper-Derived Assets

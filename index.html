@@ -9,7 +9,6 @@
   <meta property="og:image" content="assets/paper-overview.png" />
   <meta name="theme-color" content="#ffffff" />
   <title>MBench | Memory Capability for Video World Models</title>
-  <link rel="icon" href="assets/logo.svg" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -173,8 +172,8 @@
       <div class="container wide-container">
         <h2 class="section-title">Qualitative Video Comparisons by Memory Dimension</h2>
         <p class="section-intro">
-          Following the WorldScore-style gallery, each memory axis can be switched horizontally. The examples below are cropped
-          from the MBench paper and show sequence-level evidence together with first-frame / last-frame checks.
+          Switch between MBench memory axes and fine-grained sub-dimensions to inspect sequence-level evidence together with
+          trigger, metric, and reliability details.
         </p>
 
         <div class="axis-tabs" role="tablist" aria-label="Memory dimensions">
@@ -187,28 +186,26 @@
 
         <div class="qualitative-panel">
           <div class="case-header">
-            <div class="case-copy">
-              <p class="axis-label" id="memory-axis-label">Entity Consistency</p>
-              <h3 id="memory-title">Object Geometry Consistency</h3>
-              <p id="memory-summary">
-                Check whether object structure remains stable after the target leaves and re-enters the field of view.
-              </p>
-            </div>
+            <p class="axis-label" id="memory-axis-label">Entity Consistency</p>
+            <h3 id="memory-title">Object Geometry Consistency</h3>
+            <p id="memory-summary">
+              Check whether object structure remains stable after the target leaves and re-enters the field of view.
+            </p>
+          </div>
 
-            <div class="metric-card-grid">
-              <article class="metric-card">
-                <span>Trigger</span>
-                <strong id="memory-trigger">Object exits and re-enters the FoV</strong>
-              </article>
-              <article class="metric-card">
-                <span>Metric</span>
-                <strong id="memory-metric">SSIM on SAM2 object masks</strong>
-              </article>
-              <article class="metric-card">
-                <span>Reliability</span>
-                <strong id="memory-metric-copy">Computed only after the memory trigger is verified.</strong>
-              </article>
-            </div>
+          <div class="metric-card-grid">
+            <article class="metric-card">
+              <span>Trigger</span>
+              <strong id="memory-trigger">Object exits and re-enters the FoV</strong>
+            </article>
+            <article class="metric-card">
+              <span>Metric</span>
+              <strong id="memory-metric">SSIM on SAM2 object masks</strong>
+            </article>
+            <article class="metric-card">
+              <span>Reliability</span>
+              <strong id="memory-metric-copy">Computed only after the memory trigger is verified.</strong>
+            </article>
           </div>
 
           <figure class="case-visual">
@@ -219,17 +216,6 @@
               Entity consistency case from Figure 2: the bowl texture and visible structure change after the memory challenge.
             </figcaption>
           </figure>
-
-          <div class="case-notes">
-            <article>
-              <span>Before Trigger</span>
-              <p id="memory-reference-note">The first frame establishes the entity, scene, or causal state to be remembered.</p>
-            </article>
-            <article>
-              <span>After Memory Challenge</span>
-              <p id="memory-generated-note">The last frame reveals whether the generated world preserved that state.</p>
-            </article>
-          </div>
         </div>
       </div>
     </section>
@@ -274,7 +260,7 @@
     </section>
 
     <section class="section" id="dataset">
-      <div class="container two-column">
+      <div class="container dataset-layout">
         <div>
           <h2 class="section-title">Dataset &amp; Evaluation Kit</h2>
           <div class="content">
@@ -333,10 +319,7 @@ python evaluate.py \
 
   <footer class="footer">
     <div class="container">
-      <p>
-        Website source follows the academic project-page layout style used by
-        <a href="https://vchitect.github.io/VBench-project/">VBench</a>. Content and figures are for MBench.
-      </p>
+      <p>MBench: A Comprehensive Benchmark on Memory Capability for Video World Models.</p>
       <p><a href="#top">Back to top &uarr;</a></p>
     </div>
   </footer>
