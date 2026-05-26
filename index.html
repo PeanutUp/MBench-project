@@ -6,7 +6,7 @@
   <meta name="description" content="MBench: A Comprehensive Benchmark on Memory Capability for Video World Models." />
   <meta property="og:title" content="MBench" />
   <meta property="og:description" content="A benchmark for evaluating memory capability in video world models." />
-  <meta property="og:image" content="assets/hero-memory.svg" />
+  <meta property="og:image" content="assets/paper-overview.png" />
   <meta name="theme-color" content="#ffffff" />
   <title>MBench | Memory Capability for Video World Models</title>
   <link rel="icon" href="assets/logo.svg" />
@@ -29,7 +29,10 @@
       </div>
 
       <p class="publication-affiliations">
-        THU &nbsp;&nbsp; WeChat Vision, Tencent Inc. &nbsp;&nbsp; PKU &nbsp;&nbsp; SJTU
+        <span>THU</span>
+        <span>WeChat Vision, Tencent Inc.</span>
+        <span>PKU</span>
+        <span>SJTU</span>
       </p>
       <p class="contribution-note">* Equal contribution.</p>
 
@@ -50,6 +53,10 @@
           <span class="link-symbol">Rank</span>
           <span>Leaderboard</span>
         </a>
+        <a class="external-link" href="#qualitative">
+          <span class="link-symbol">Demo</span>
+          <span>Cases</span>
+        </a>
       </div>
     </div>
   </section>
@@ -58,12 +65,11 @@
     <section class="section teaser-section">
       <div class="container wide-container">
         <figure class="teaser-figure">
-          <img src="assets/hero-memory.svg" alt="Overview of the MBench memory benchmark" />
+          <img src="assets/paper-overview.png" alt="Overview of the MBench memory benchmark from the paper" />
           <figcaption>
             <strong>Overview of MBench.</strong>
-            We evaluate whether video world models can preserve entities, environments, and causal state over long horizons.
-            MBench separates memory-trigger coverage from post-trigger reliability, exposing failures that ordinary short-horizon
-            quality metrics can miss.
+            The benchmark uses a three-level memory taxonomy and reports text-conditioned and action-conditioned world-model
+            performance with radar charts across long-horizon memory dimensions.
           </figcaption>
         </figure>
       </div>
@@ -131,13 +137,6 @@
           MBench organizes long-horizon memory into three complementary dimensions and twelve sub-dimensions.
         </p>
 
-        <figure class="taxonomy-figure">
-          <img src="assets/taxonomy.svg" alt="MBench memory capability taxonomy" />
-          <figcaption>
-            MBench taxonomy: entity memory, environment memory, and causal memory form the core evaluation hierarchy.
-          </figcaption>
-        </figure>
-
         <div class="dimension-grid">
           <article class="dimension-card">
             <h3>Entity Consistency</h3>
@@ -170,24 +169,67 @@
       </div>
     </section>
 
-    <section class="section" id="examples">
-      <div class="container">
-        <h2 class="section-title">Display of Evaluation Examples in Different Dimensions</h2>
-        <p class="section-intro">Representative memory failures detected by MBench. Larger scores denote better performance.</p>
+    <section class="section qualitative-section" id="qualitative">
+      <div class="container wide-container">
+        <h2 class="section-title">Qualitative Video Comparisons by Memory Dimension</h2>
+        <p class="section-intro">
+          Following the WorldScore-style gallery, each memory axis can be switched horizontally. The examples below are cropped
+          from the MBench paper and show sequence-level evidence together with first-frame / last-frame checks.
+        </p>
 
-        <div class="example-grid">
-          <figure class="example-card">
-            <img src="assets/failure-entity.svg" alt="Entity memory failure example" />
-            <figcaption>Entity memory: object texture and human appearance drift after occlusion or re-entry.</figcaption>
+        <div class="axis-tabs" role="tablist" aria-label="Memory dimensions">
+          <button class="axis-tab active" type="button" data-axis="entity">Entity Consistency</button>
+          <button class="axis-tab" type="button" data-axis="environment">Environment Consistency</button>
+          <button class="axis-tab" type="button" data-axis="causal">Causal Consistency</button>
+        </div>
+
+        <div class="sub-tabs" id="memory-subtabs" role="tablist" aria-label="Memory sub-dimensions"></div>
+
+        <div class="qualitative-panel">
+          <div class="case-header">
+            <div class="case-copy">
+              <p class="axis-label" id="memory-axis-label">Entity Consistency</p>
+              <h3 id="memory-title">Object Geometry Consistency</h3>
+              <p id="memory-summary">
+                Check whether object structure remains stable after the target leaves and re-enters the field of view.
+              </p>
+            </div>
+
+            <div class="metric-card-grid">
+              <article class="metric-card">
+                <span>Trigger</span>
+                <strong id="memory-trigger">Object exits and re-enters the FoV</strong>
+              </article>
+              <article class="metric-card">
+                <span>Metric</span>
+                <strong id="memory-metric">SSIM on SAM2 object masks</strong>
+              </article>
+              <article class="metric-card">
+                <span>Reliability</span>
+                <strong id="memory-metric-copy">Computed only after the memory trigger is verified.</strong>
+              </article>
+            </div>
+          </div>
+
+          <figure class="case-visual">
+            <div class="case-image-shell">
+              <img id="memory-case-image" src="assets/case-entity.png" alt="Entity consistency failure case from the MBench paper" />
+            </div>
+            <figcaption id="memory-paper-caption">
+              Entity consistency case from Figure 2: the bowl texture and visible structure change after the memory challenge.
+            </figcaption>
           </figure>
-          <figure class="example-card">
-            <img src="assets/failure-environment.svg" alt="Environment memory failure example" />
-            <figcaption>Environment memory: scene layout, projection, or lighting changes unexpectedly.</figcaption>
-          </figure>
-          <figure class="example-card">
-            <img src="assets/failure-causal.svg" alt="Causal memory failure example" />
-            <figcaption>Causal memory: state evolution and interaction consequences are forgotten or contradicted.</figcaption>
-          </figure>
+
+          <div class="case-notes">
+            <article>
+              <span>Before Trigger</span>
+              <p id="memory-reference-note">The first frame establishes the entity, scene, or causal state to be remembered.</p>
+            </article>
+            <article>
+              <span>After Memory Challenge</span>
+              <p id="memory-generated-note">The last frame reveals whether the generated world preserved that state.</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -251,8 +293,14 @@
           </div>
         </div>
 
-        <div class="code-panel">
-          <p class="panel-title">Quick Start</p>
+        <div class="dataset-stack">
+          <figure class="dataset-figure">
+            <img src="assets/prompt-suite.png" alt="Prompt and action distribution statistics from MBench" />
+            <figcaption>Prompt suite statistics from the paper: text prompt distribution, prompt cloud, and action distribution.</figcaption>
+          </figure>
+
+          <div class="code-panel">
+            <p class="panel-title">Quick Start</p>
 <pre><code>git clone https://github.com/study-overflow/MBench.git
 cd MBench
 
@@ -261,6 +309,7 @@ pip install -r requirements.txt
 python evaluate.py \
   --pred_dir outputs/demo_model \
   --split demo</code></pre>
+          </div>
         </div>
       </div>
     </section>

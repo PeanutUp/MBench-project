@@ -29,6 +29,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   font-size: 16px;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 a {
@@ -46,17 +47,19 @@ img {
 }
 
 .container {
-  width: min(100%, var(--max));
+  width: 100%;
+  max-width: var(--max);
+  min-width: 0;
   margin: 0 auto;
   padding: 0 24px;
 }
 
 .wide-container {
-  width: min(100%, var(--wide));
+  max-width: var(--wide);
 }
 
 .narrow-container {
-  width: min(100%, 820px);
+  max-width: 820px;
 }
 
 .hero {
@@ -66,7 +69,7 @@ img {
 }
 
 .hero-container {
-  width: min(100%, 1060px);
+  max-width: 1060px;
 }
 
 .publication-title {
@@ -78,6 +81,7 @@ img {
   font-weight: 700;
   line-height: 1.18;
   letter-spacing: 0;
+  overflow-wrap: break-word;
 }
 
 .publication-status {
@@ -103,6 +107,10 @@ img {
 }
 
 .publication-affiliations {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px 18px;
   max-width: 900px;
   margin: 10px auto 0;
   color: var(--text);
@@ -242,6 +250,7 @@ img {
 .protocol-grid article,
 .code-panel,
 .bibtex-panel {
+  min-width: 0;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--softer);
@@ -287,6 +296,7 @@ img {
 }
 
 .example-card {
+  min-width: 0;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -331,6 +341,7 @@ img {
 }
 
 .table-wrap {
+  min-width: 0;
   overflow-x: auto;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -378,6 +389,175 @@ td:nth-child(3) {
   text-align: center;
 }
 
+.qualitative-section {
+  background:
+    linear-gradient(180deg, #fbfbfb 0%, #ffffff 100%);
+}
+
+.axis-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 auto 12px;
+  max-width: 880px;
+}
+
+.sub-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto 20px;
+  max-width: 980px;
+}
+
+.axis-tab,
+.sub-tab {
+  min-height: 38px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  background: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.axis-tab {
+  min-height: 44px;
+  font-size: 15px;
+}
+
+.sub-tab {
+  font-size: 14px;
+}
+
+.axis-tab.active,
+.sub-tab.active {
+  color: #ffffff;
+  border-color: var(--dark);
+  background: var(--dark);
+}
+
+.qualitative-panel {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.06);
+}
+
+.axis-label {
+  margin: 0 0 6px;
+  color: var(--link);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.case-header {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.84fr) minmax(0, 1.16fr);
+  gap: 22px;
+  padding: 22px 22px 18px;
+  align-items: start;
+}
+
+.case-copy h3 {
+  margin: 0;
+  color: var(--heading);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.case-copy p:last-child {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
+.metric-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.metric-card,
+.case-notes article {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--softer);
+}
+
+.metric-card {
+  padding: 13px;
+}
+
+.metric-card span,
+.case-notes span {
+  display: block;
+  color: var(--link);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.metric-card strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--heading);
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.case-visual {
+  margin: 0;
+  padding: 0 22px 18px;
+}
+
+.case-image-shell {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.case-image-shell img {
+  width: 100%;
+  min-height: 170px;
+  object-fit: contain;
+  background: #ffffff;
+}
+
+.case-visual figcaption,
+.dataset-figure figcaption {
+  padding: 11px 4px 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.case-notes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 22px 22px;
+}
+
+.case-notes article {
+  padding: 14px;
+}
+
+.case-notes p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
 .protocol-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
@@ -421,6 +601,10 @@ td:nth-child(3) {
   align-items: start;
 }
 
+.two-column > * {
+  min-width: 0;
+}
+
 .two-column .section-title {
   text-align: left;
 }
@@ -434,6 +618,24 @@ td:nth-child(3) {
 
 .inline-links a {
   font-weight: 700;
+}
+
+.dataset-stack {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+
+.dataset-figure {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.dataset-figure img {
+  width: 100%;
 }
 
 .code-panel,
@@ -457,6 +659,8 @@ pre {
   font-size: 14px;
   line-height: 1.55;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 code {
@@ -505,6 +709,9 @@ code {
   .dimension-grid,
   .example-grid,
   .protocol-grid,
+  .case-header,
+  .metric-card-grid,
+  .case-notes,
   .two-column {
     grid-template-columns: 1fr;
   }
@@ -524,7 +731,9 @@ code {
   }
 
   .publication-title {
-    font-size: 28px;
+    font-size: 24px;
+    line-height: 1.2;
+    max-width: calc(100vw - 36px);
   }
 
   .publication-status {
@@ -532,7 +741,15 @@ code {
   }
 
   .publication-authors {
-    font-size: 16px;
+    gap: 3px 9px;
+    max-width: calc(100vw - 36px);
+    font-size: 15px;
+  }
+
+  .publication-affiliations {
+    max-width: calc(100vw - 36px);
+    gap: 2px 12px;
+    font-size: 14px;
   }
 
   .section {
@@ -554,9 +771,26 @@ code {
     flex-direction: column;
   }
 
+  .axis-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .case-header,
+  .case-visual,
+  .case-notes {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
   .external-link,
   .tab {
     justify-content: center;
+  }
+
+  .external-link {
+    width: 100%;
+    max-width: 320px;
+    align-self: center;
   }
 
   .formula {

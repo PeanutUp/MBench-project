@@ -1,58 +1,41 @@
-# MBench Project Page Template
+# MBench Project Page
 
-This is a lightweight static project-page template for **MBench: A Comprehensive Benchmark on Memory Capability for Video World Models**.
+This repository hosts a lightweight static project page for **MBench: A Comprehensive Benchmark on Memory Capability for Video World Models**.
+
 
 ## Files
 
 ```text
 .
 ├── index.html          # page content
-├── style.css           # visual theme
-├── script.js           # tabs, leaderboard, copy button
-├── assets/             # replace these placeholders with paper figures/videos
+├── style.css           # VBench-like academic layout
+├── script.js           # leaderboard tabs and BibTeX copy button
+├── assets/             # MBench figures extracted from the paper plus placeholders
 └── .nojekyll           # avoids GitHub Pages Jekyll processing
 ```
 
-## What you should replace first
+## Update Before Release
 
-1. `YOUR_ARXIV_OR_PAPER_LINK`
-2. `YOUR_DATASET_LINK`
-3. `YOUR_HF_SPACE_OR_LEADERBOARD`
-4. author list and affiliations
-5. `assets/teaser.mp4`
-6. `assets/taxonomy.svg` or replace with your final Figure 1
-7. demo numbers in `script.js`
-8. BibTeX in `index.html`
+1. Replace demo leaderboard values in `script.js` with final results.
+2. Update author affiliations and BibTeX in `index.html`.
+3. Replace placeholder video panels in the qualitative section with real `.mp4` / `.webm` clips when available.
+4. Update repository, paper, dataset, or leaderboard links once public.
 
-## Recommended assets
+## Paper-Derived Assets
 
-- `assets/teaser.mp4`: compressed demo video, ideally under 20 MB.
-- `assets/figure1.png`: taxonomy + radar overview from the paper.
-- `assets/failure_entity.mp4`, `failure_environment.mp4`, `failure_causal.mp4`: short failure cases.
-- `assets/leaderboard.json`: optional, if you later want to load data dynamically.
+- `assets/paper-overview.png`: Figure 1 overview / taxonomy / radar charts.
+- `assets/paper-failure-cases.png`: Figure 2 memory failure cases.
+- `assets/case-environment.png`: cropped environment consistency row from Figure 2.
+- `assets/case-entity.png`: cropped entity consistency row from Figure 2.
+- `assets/case-causal.png`: cropped causal consistency row from Figure 2.
+- `assets/prompt-suite.png`: Figure 3 prompt and action distribution statistics.
 
-## Local preview
+## Local Preview
 
-Open `index.html` directly in your browser, or run:
+Open `index.html` directly in a browser, or run:
 
 ```bash
 python -m http.server 8000
 ```
 
 Then open `http://localhost:8000`.
-
-
-
-## Color theme
-
-The main theme variables are in `style.css`:
-
-```css
---violet: #6d4aa4;
---violet-deep: #3d2568;
---teal: #5fc6ba;
---rose: #e891a8;
---amber: #f2c67d;
-```
-
-They are designed to match the purple section headings and pastel taxonomy colors in the current LaTeX draft.
