@@ -14,9 +14,11 @@ const DATA = {
 };
 
 function renderLeaderboard(kind = "text") {
-  const tbody = document.querySelector("#leaderboard tbody");
+  const tbody = document.querySelector("#leaderboard-table tbody");
+  if (!tbody) return;
+  const rows = DATA[kind] || DATA.text;
   tbody.innerHTML = "";
-  DATA[kind]
+  [...rows]
     .sort((a, b) => b.m - a.m)
     .forEach((row, index) => {
       const tr = document.createElement("tr");
@@ -41,26 +43,18 @@ document.querySelectorAll(".tab").forEach((button) => {
   });
 });
 
-const navToggle = document.querySelector(".nav-toggle");
-const nav = document.querySelector(".site-nav");
-navToggle.addEventListener("click", () => {
-  const open = nav.classList.toggle("open");
-  navToggle.setAttribute("aria-expanded", open ? "true" : "false");
-});
-nav.querySelectorAll("a").forEach((a) => {
-  a.addEventListener("click", () => nav.classList.remove("open"));
-});
-
 const copyButton = document.querySelector("#copy-bibtex");
-copyButton.addEventListener("click", async () => {
-  const text = document.querySelector("#bibtex-block").innerText;
-  try {
-    await navigator.clipboard.writeText(text);
-    copyButton.textContent = "Copied!";
-    setTimeout(() => (copyButton.textContent = "Copy BibTeX"), 1400);
-  } catch {
-    copyButton.textContent = "Copy failed";
-  }
-});
+if (copyButton) {
+  copyButton.addEventListener("click", async () => {
+    const text = document.querySelector("#bibtex-block").innerText;
+    try {
+      await navigator.clipboard.writeText(text);
+      copyButton.textContent = "Copied!";
+      setTimeout(() => (copyButton.textContent = "Copy BibTeX"), 1400);
+    } catch {
+      copyButton.textContent = "Copy failed";
+    }
+  });
+}
 
 renderLeaderboard("text");
