@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="MBench: A Comprehensive Benchmark on Memory Capability for Video World Models." />
   <meta property="og:title" content="MBench" />
-  <meta property="og:description" content="A benchmark for evaluating memory capability in video world models." />
+  <meta property="og:description" content="A comprehensive benchmark for evaluating memory capability in video world models." />
   <meta property="og:image" content="assets/paper-overview.png" />
   <meta name="theme-color" content="#ffffff" />
   <title>MBench | Memory Capability for Video World Models</title>
@@ -19,26 +19,27 @@
       <p class="publication-status">Project Page</p>
 
       <p class="publication-authors">
-        <span>Shengjun Zhang<sup>*</sup></span>
-        <span>Zhang Zhang<sup>*</sup></span>
-        <span>Simin Huang</span>
-        <span>Zhenyu Tang</span>
-        <span>Hanyang Wang</span>
-        <span>Chensheng Dai</span>
-        <span>Min Chen</span>
-        <span>Yifan Li</span>
-        <span>Min Chen</span>
-        <span>Min Chen</span>
-        <span>Min Chen</span>
+        <span>Shengjun Zhang<sup>1,*</sup></span>
+        <span>Zhang Zhang<sup>1,2,*</sup></span>
+        <span>Simin Huang<sup>1</sup></span>
+        <span>Zhenyu Tang<sup>3</sup></span>
+        <span>Hanyang Wang<sup>1</sup></span>
+        <span>Chensheng Dai<sup>1</sup></span>
+        <span>Min Chen<sup>1</sup></span>
+        <span>Yifan Li<sup>1</sup></span>
+        <span>Yuxin Li<sup>1</sup></span>
+        <span>Yingjie Chen<sup>2</sup></span>
+        <span>Hao Liu<sup>2</sup></span>
+        <span>Chen Li<sup>2</sup></span>
+        <span>Yueqi Duan<sup>1,&dagger;</sup></span>
       </p>
 
       <p class="publication-affiliations">
-        <span>THU</span>
-        <span>WeChat Vision, Tencent Inc.</span>
-        <span>PKU</span>
-        <span>SJTU</span>
+        <span><sup>1</sup>THU</span>
+        <span><sup>2</sup>WeChat Vision, Tencent Inc.</span>
+        <span><sup>3</sup>PKU</span>
       </p>
-      <p class="contribution-note">* Equal contribution.</p>
+      <p class="contribution-note">* Equal contribution. &dagger; Corresponding author.</p>
 
       <div class="publication-links" aria-label="Project links">
         <a class="external-link" href="#citation">
@@ -76,15 +77,6 @@
           </span>
           <span>Leaderboard</span>
         </a>
-        <a class="external-link" href="#qualitative">
-          <span class="button-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" focusable="false">
-              <path d="M5 7h14v10H5z" />
-              <path d="m10 10 5 2-5 2z" />
-            </svg>
-          </span>
-          <span>Cases</span>
-        </a>
       </div>
     </div>
   </section>
@@ -96,8 +88,8 @@
           <img src="assets/paper-overview.png" alt="Overview of the MBench memory benchmark from the paper" />
           <figcaption>
             <strong>Overview of MBench.</strong>
-            The benchmark uses a three-level memory taxonomy and reports text-conditioned and action-conditioned world-model
-            performance with radar charts across long-horizon memory dimensions.
+            MBench evaluates memory capability through a three-level taxonomy and reports text-conditioned and
+            action-conditioned model behavior across long-horizon consistency dimensions.
           </figcaption>
         </figure>
       </div>
@@ -108,16 +100,23 @@
         <h2 class="section-title">Abstract</h2>
         <div class="content">
           <p>
-            Video world models are expected to generate coherent environments that remember what has happened, what remains
-            stable, and what should change after actions or events. Existing video-generation benchmarks primarily emphasize
-            visual quality, motion smoothness, and prompt alignment, leaving long-horizon memory capability under-specified.
+            Recent video-based world models can synthesize high-fidelity visual sequences, but a fundamental gap remains
+            between visually plausible generation and the functional requirements of a world model. A reliable world model
+            must maintain a stable and reasonable internal state across extended temporal horizons, camera motion, occlusion,
+            and interaction.
           </p>
           <p>
-            MBench provides a structured benchmark for memory capability in video world models. It decomposes memory into
-            entity consistency, environment consistency, and causal consistency, with fine-grained tests for object appearance,
-            human identity, scene layout, lighting, self-evolution, and text/action-conditioned interactions. The benchmark
-            reports both trigger coverage and reliability after the trigger, producing an M-Score that rewards models only when
-            they enter memory-demanding scenarios and remain consistent afterward.
+            MBench is a comprehensive benchmark for quantifying memory capability in video world models. It decomposes memory
+            into three complementary dimensions: entity consistency, environment consistency, and causal consistency. These
+            dimensions are further refined into twelve quantifiable sub-dimensions covering object geometry and texture, human
+            identity and appearance, spatial and rendering stability, self-evolution, and text/action-conditioned interaction.
+          </p>
+          <p>
+            The benchmark is built from rigorously curated real-captured long videos and evaluated with a hybrid protocol that
+            combines rule-based quantitative metrics with VLM question-answering. Extensive evaluation of recent video
+            continuation models and action-conditioned world models reveals systematic limitations in long-term state retention,
+            exposing memory as a central bottleneck for building persistent, controllable, and causally coherent video world
+            models.
           </p>
         </div>
       </div>
@@ -125,35 +124,51 @@
 
     <section class="section" id="leaderboard">
       <div class="container">
-        <h2 class="section-title">MBench Evaluation Results of Recent Video World Models</h2>
+        <h2 class="section-title">MBench Quantitative Results</h2>
         <p class="section-intro">
-          We report demo leaderboard numbers across three memory axes. Replace these values with the released evaluation CSV or
-          JSON when final model results are available.
+          We evaluate eight text-conditioned continuation models and six action-conditioned world models. The table reports
+          the memory sub-dimensions for which valid automatic measurements are available in the paper.
         </p>
 
-        <div class="tab-row" role="tablist" aria-label="Leaderboard views">
-          <button class="tab active" type="button" data-tab="text">Text-conditioned</button>
-          <button class="tab" type="button" data-tab="action">Action-conditioned</button>
-        </div>
-
         <div class="table-wrap">
-          <table id="leaderboard-table" aria-label="MBench leaderboard">
+          <table aria-label="MBench quantitative results">
             <thead>
               <tr>
-                <th>Rank</th>
                 <th>Model</th>
-                <th>M-Score &uarr;</th>
-                <th>Entity &uarr;</th>
-                <th>Environment &uarr;</th>
-                <th>Causal &uarr;</th>
-                <th>Trigger &uarr;</th>
+                <th>Setting</th>
+                <th>Geometry</th>
+                <th>Texture</th>
+                <th>Identity</th>
+                <th>Appearance</th>
+                <th>Epipolar</th>
+                <th>Reprojection</th>
+                <th>Lighting</th>
+                <th>Style</th>
+                <th>Text</th>
+                <th>Action</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              <tr><td>Memflow</td><td>Text</td><td>-</td><td>-</td><td>31.44</td><td>50.22</td><td>-</td><td>-</td><td>-</td><td>-</td><td>30.13</td><td>-</td></tr>
+              <tr><td>Self Forcing</td><td>Text</td><td>-</td><td>-</td><td>37.67</td><td>56.64</td><td>-</td><td>-</td><td>-</td><td>-</td><td>28.13</td><td>-</td></tr>
+              <tr><td>Skyreels V2</td><td>Text</td><td>-</td><td>-</td><td>14.62</td><td>41.31</td><td>-</td><td>-</td><td>-</td><td>-</td><td>28.77</td><td>-</td></tr>
+              <tr><td>LongLive</td><td>Text</td><td>-</td><td>-</td><td>34.89</td><td>57.49</td><td>-</td><td>-</td><td>-</td><td>-</td><td>30.69</td><td>-</td></tr>
+              <tr><td>LongCat-Video</td><td>Text</td><td>-</td><td>-</td><td>16.32</td><td>42.16</td><td>-</td><td>-</td><td>-</td><td>-</td><td>30.08</td><td>-</td></tr>
+              <tr><td>Cosmos-Predict 2.5</td><td>Text</td><td>-</td><td>-</td><td>9.53</td><td>32.26</td><td>-</td><td>-</td><td>-</td><td>-</td><td>29.10</td><td>-</td></tr>
+              <tr><td>Causal Forcing</td><td>Text</td><td>-</td><td>-</td><td>28.16</td><td>51.14</td><td>-</td><td>-</td><td>-</td><td>-</td><td>28.95</td><td>-</td></tr>
+              <tr><td>Helios</td><td>Text</td><td>-</td><td>-</td><td>20.28</td><td>29.85</td><td>-</td><td>-</td><td>-</td><td>-</td><td>27.53</td><td>-</td></tr>
+              <tr><td>Matrix-Game 2.0</td><td>Action</td><td>14.62</td><td>28.99</td><td>1.22</td><td>0.94</td><td>14.78</td><td>3.08</td><td>38.79</td><td>37.10</td><td>16.00</td><td>47.86</td></tr>
+              <tr><td>Matrix-Game 3.0</td><td>Action</td><td>44.15</td><td>58.22</td><td>42.38</td><td>47.91</td><td>61.99</td><td>32.86</td><td>62.06</td><td>83.90</td><td>22.48</td><td>81.93</td></tr>
+              <tr><td>HY-WorldPlay</td><td>Action</td><td>47.12</td><td>68.54</td><td>52.46</td><td>66.58</td><td>83.86</td><td>68.17</td><td>82.67</td><td>92.04</td><td>25.38</td><td>85.69</td></tr>
+              <tr><td>Yume-1.5</td><td>Action</td><td>60.96</td><td>49.99</td><td>17.41</td><td>40.57</td><td>51.86</td><td>24.55</td><td>51.21</td><td>74.65</td><td>33.32</td><td>62.20</td></tr>
+              <tr><td>Lingbot-World</td><td>Action</td><td>33.20</td><td>44.54</td><td>11.57</td><td>33.53</td><td>22.12</td><td>7.57</td><td>40.06</td><td>53.50</td><td>31.76</td><td>63.32</td></tr>
+              <tr><td>Infinite-World</td><td>Action</td><td>35.70</td><td>61.88</td><td>23.08</td><td>46.85</td><td>74.04</td><td>61.51</td><td>62.63</td><td>86.34</td><td>27.53</td><td>86.37</td></tr>
+            </tbody>
           </table>
         </div>
         <p class="table-note">
-          Scores are normalized to [0, 1] for readable comparison. Higher values indicate stronger memory capability.
+          Dashes indicate metrics that are not evaluated for that model setting. Higher values indicate stronger memory
+          capability under the corresponding sub-dimension.
         </p>
       </div>
     </section>
@@ -162,12 +177,14 @@
       <div class="container">
         <h2 class="section-title">Memory Capability Dimensions</h2>
         <p class="section-intro">
-          MBench organizes long-horizon memory into three complementary dimensions and twelve sub-dimensions.
+          MBench uses a hierarchical taxonomy that moves from persistent entities, to stable environments, to the causal
+          rules that govern state evolution and interaction.
         </p>
 
         <div class="dimension-grid">
           <article class="dimension-card">
             <h3>Entity Consistency</h3>
+            <p>Tests whether individual objects and human subjects keep their persistent identity and attributes across long rollouts.</p>
             <ul>
               <li>Object geometry consistency</li>
               <li>Object texture consistency</li>
@@ -177,6 +194,7 @@
           </article>
           <article class="dimension-card">
             <h3>Environment Consistency</h3>
+            <p>Measures whether the spatial stage and rendering properties of the world remain stable as viewpoints change.</p>
             <ul>
               <li>Epipolar geometry consistency</li>
               <li>Reprojection consistency</li>
@@ -186,9 +204,10 @@
           </article>
           <article class="dimension-card">
             <h3>Causal Consistency</h3>
+            <p>Evaluates whether generated worlds follow established physical and semantic rules through hidden intervals.</p>
             <ul>
-              <li>Trigger recognition</li>
-              <li>Physical or event self-evolution</li>
+              <li>State evolution</li>
+              <li>Evolution correctness</li>
               <li>Text-conditioned interaction</li>
               <li>Action-conditioned interaction</li>
             </ul>
@@ -201,8 +220,8 @@
       <div class="container wide-container">
         <h2 class="section-title">Qualitative Video Comparisons by Memory Dimension</h2>
         <p class="section-intro">
-          Switch between MBench memory axes and fine-grained sub-dimensions to inspect sequence-level evidence together with
-          trigger and metric details.
+          Switch between the memory axes and sub-dimensions to inspect the trigger condition, metric definition, and the
+          corresponding visual evidence used for diagnosis.
         </p>
 
         <div class="axis-tabs" role="tablist" aria-label="Memory dimensions">
@@ -218,18 +237,18 @@
             <p class="axis-label" id="memory-axis-label">Entity Consistency</p>
             <h3 id="memory-title">Object Geometry Consistency</h3>
             <p id="memory-summary">
-              Check whether object structure remains stable after the target leaves and re-enters the field of view.
+              Check whether the geometric structure of a target object is preserved after departure-return camera motion.
             </p>
           </div>
 
           <div class="metric-card-grid">
             <article class="metric-card">
               <span>Trigger</span>
-              <strong id="memory-trigger">Object exits and re-enters the FoV</strong>
+              <strong id="memory-trigger">Object exits and re-enters the field of view.</strong>
             </article>
             <article class="metric-card">
               <span>Metric</span>
-              <strong id="memory-metric">SSIM on SAM2 object masks</strong>
+              <strong id="memory-metric">SSIM within SAM 2 object masks after viewpoint-aligned warping.</strong>
             </article>
           </div>
 
@@ -238,7 +257,7 @@
               <img id="memory-case-image" src="assets/case-entity.png" alt="Entity consistency failure case from the MBench paper" />
             </div>
             <figcaption id="memory-paper-caption">
-              Entity consistency case from Figure 2: the bowl texture and visible structure change after the memory challenge.
+              Entity memory failures appear when an object returns with changed geometry, texture, or identity after the memory challenge.
             </figcaption>
           </figure>
         </div>
@@ -249,30 +268,30 @@
       <div class="container">
         <h2 class="section-title">Evaluation Protocol</h2>
         <p class="section-intro">
-          MBench uses trigger-conditioned scoring to avoid giving high consistency scores to static or conservative generations
-          that never enter the intended memory-demanding situation.
+          MBench uses Trigger-Conditioned Scoring to avoid rewarding models that preserve consistency only by avoiding the
+          memory challenge. A generated video must first enter the intended trigger state before memory reliability is scored.
         </p>
 
         <div class="protocol-grid">
           <article>
             <span>01</span>
             <h3>Curate Long Videos</h3>
-            <p>Collect clips with occlusion, camera motion, state changes, and interaction events.</p>
+            <p>Collect real-captured long videos with occlusion, departure-return camera motion, human-object interaction, and physical state transitions.</p>
           </article>
           <article>
             <span>02</span>
             <h3>Generate Conditions</h3>
-            <p>Create text prompts and action sequences that require long-horizon memory.</p>
+            <p>Create multi-segment text continuations and exit-wait-reenter action sequences that explicitly require state retention.</p>
           </article>
           <article>
             <span>03</span>
             <h3>Verify Triggers</h3>
-            <p>Check whether the generated video actually reaches the memory-triggering case.</p>
+            <p>Use VLM verification to confirm that the generated video actually executes the memory-triggering event.</p>
           </article>
           <article>
             <span>04</span>
             <h3>Score Reliability</h3>
-            <p>Evaluate consistency only after the trigger and combine it with coverage.</p>
+            <p>Evaluate consistency only on triggered samples, then combine reliability and trigger coverage with the M-Score harmonic mean.</p>
           </article>
         </div>
 
@@ -290,12 +309,21 @@
           <h2 class="section-title">Dataset &amp; Evaluation Kit</h2>
           <div class="content">
             <p>
-              The benchmark is designed for long videos and explicit memory triggers. This section can host released prompt
-              suites, action-conditioned scenarios, license notes, and submission instructions.
+              MBench aggregates real-world long videos from DL3DV, Tanks and Temples, OpenHumanVID, SpatialVID, and
+              Physics-aware-video. These sources cover indoor and outdoor environments, human-object interactions, dynamic
+              camera motion, and physical state transitions, with video durations ranging from seconds to minutes.
             </p>
             <p>
-              Keep private assets behind a request form if the dataset is not public yet, then replace the links below when the
-              final release is ready.
+              A VLM is used to select clips that pose meaningful memory challenges for entity consistency, environment
+              consistency, and causal consistency. For text-conditioned continuation, each video is converted into a structured
+              scene description and split into five semantically coherent segments with camera-control instructions. For
+              action-conditioned models, MBench adopts an exit-and-reenter paradigm: the camera leaves the target entity,
+              waits while the target is invisible, and then follows the reverse trajectory back to the initial view.
+            </p>
+            <p>
+              The evaluation kit implements specialized metrics for the twelve sub-dimensions, including SAM 2 masks,
+              DINOv2 features, ArcFace identity tracks, DA3 camera geometry, CIELAB lighting statistics, Gram matrix style
+              distance, OpenCLIP text-video alignment, 6-DoF action alignment, and VLM-based causal scoring.
             </p>
           </div>
         </div>
@@ -303,7 +331,7 @@
         <div class="dataset-stack">
           <figure class="dataset-figure">
             <img src="assets/prompt-suite.png" alt="Prompt and action distribution statistics from MBench" />
-            <figcaption>Prompt suite statistics from the paper: text prompt distribution, prompt cloud, and action distribution.</figcaption>
+            <figcaption>Prompt suite statistics from the paper: prompt distribution, text prompt cloud, and action distribution.</figcaption>
           </figure>
 
           <div class="code-panel">
@@ -314,9 +342,43 @@ cd MBench
 pip install -r requirements.txt
 
 python evaluate.py \
-  --pred_dir outputs/demo_model \
-  --split demo</code></pre>
+  --pred_dir outputs/model_name \
+  --split benchmark \
+  --metrics all</code></pre>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="findings">
+      <div class="container">
+        <h2 class="section-title">Experimental Findings</h2>
+        <div class="finding-grid">
+          <article>
+            <h3>Memory Remains a Bottleneck</h3>
+            <p>Many models produce visually plausible long videos but fail to maintain persistent world state after occlusion, camera departure, or long-horizon continuation.</p>
+          </article>
+          <article>
+            <h3>Spatial Reasoning Is Fragile</h3>
+            <p>Models can preserve local appearance while losing the underlying 3D layout, producing high visual coherence but weak epipolar and reprojection consistency.</p>
+          </article>
+          <article>
+            <h3>Action Control Is Uneven</h3>
+            <p>Action-conditioned world models differ substantially in their ability to execute controlled motion, return to prior viewpoints, and preserve hidden state.</p>
+          </article>
+          <article>
+            <h3>Causal Memory Is Hardest</h3>
+            <p>Out-of-view state evolution exposes whether a model truly simulates causal progress or simply resets to a plausible but unrelated later frame.</p>
+          </article>
+        </div>
+
+        <div class="content compact-content">
+          <p>
+            In the human alignment study, the current annotation set contains 4,459 records from 22 annotators, covering
+            binary trigger judgments and pairwise memory-consistency comparisons across all 14 evaluated models and 12
+            dimensions. Entity metrics align strongly with human preferences on text-conditioned continuation, while spatial
+            epipolar and reprojection metrics are especially predictive for action-conditioned rollouts.
+          </p>
         </div>
       </div>
     </section>
@@ -328,7 +390,7 @@ python evaluate.py \
         <div class="bibtex-panel">
 <pre id="bibtex-block"><code>@article{zhang2026mbench,
   title   = {MBench: A Comprehensive Benchmark on Memory Capability for Video World Models},
-  author  = {Zhang, Shengjun and Zhang, Zhang and Huang, Simin and Tang, Zhenyu and others},
+  author  = {Zhang, Shengjun and Zhang, Zhang and Huang, Simin and Tang, Zhenyu and Wang, Hanyang and Dai, Chensheng and Chen, Min and Li, Yifan and Li, Yuxin and Chen, Yingjie and Liu, Hao and Li, Chen and Duan, Yueqi},
   journal = {arXiv preprint},
   year    = {2026}
 }</code></pre>

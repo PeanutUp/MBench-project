@@ -90,7 +90,10 @@ img {
 }
 
 .publication-authors {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px 14px;
   max-width: 930px;
   margin: 0 auto;
   color: var(--text);
@@ -101,7 +104,7 @@ img {
 
 .publication-authors span {
   display: inline-block;
-  margin: 0 7px;
+  margin: 0;
   white-space: nowrap;
 }
 
@@ -212,6 +215,11 @@ img {
   margin: 0 0 16px;
 }
 
+.compact-content {
+  max-width: 900px;
+  margin: 22px auto 0;
+}
+
 .teaser-section {
   padding-top: 24px;
 }
@@ -250,7 +258,8 @@ img {
 
 .dimension-grid,
 .example-grid,
-.protocol-grid {
+.protocol-grid,
+.finding-grid {
   display: grid;
   gap: 18px;
 }
@@ -261,6 +270,7 @@ img {
 
 .dimension-card,
 .protocol-grid article,
+.finding-grid article,
 .code-panel,
 .bibtex-panel {
   min-width: 0;
@@ -270,12 +280,14 @@ img {
   box-shadow: none;
 }
 
-.dimension-card {
+.dimension-card,
+.finding-grid article {
   padding: 20px 22px;
 }
 
 .dimension-card h3,
-.protocol-grid h3 {
+.protocol-grid h3,
+.finding-grid h3 {
   margin: 0 0 10px;
   color: var(--heading);
   font-size: 18px;
@@ -297,6 +309,14 @@ img {
 
 .dimension-card li + li {
   margin-top: 6px;
+}
+
+.dimension-card p,
+.finding-grid p {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 .example-grid {
@@ -359,13 +379,13 @@ img {
 
 table {
   width: 100%;
-  min-width: 720px;
+  min-width: 900px;
   border-collapse: collapse;
 }
 
 th,
 td {
-  padding: 12px 14px;
+  padding: 8px 9px;
   border-bottom: 1px solid #eeeeee;
   text-align: left;
 }
@@ -373,13 +393,14 @@ td {
 th {
   color: var(--heading);
   background: var(--soft);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 td {
   color: var(--text);
-  font-size: 15px;
+  font-size: 12px;
 }
 
 tbody tr:last-child td {
@@ -387,7 +408,7 @@ tbody tr:last-child td {
 }
 
 td:first-child,
-td:nth-child(3) {
+td:nth-child(2) {
   font-weight: 700;
 }
 
@@ -548,6 +569,10 @@ td:nth-child(3) {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.finding-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .protocol-grid article {
   padding: 18px;
 }
@@ -681,7 +706,8 @@ code {
 
   .dimension-grid,
   .example-grid,
-  .protocol-grid {
+  .protocol-grid,
+  .finding-grid {
     grid-template-columns: 1fr;
   }
 }
