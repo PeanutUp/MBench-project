@@ -8,6 +8,8 @@
   --softer: #fbfbfb;
   --dark: #000000;
   --violet: #6d4aa4;
+  --brand-purple: #9b2fa4;
+  --brand-blue: #1579d6;
   --max: 980px;
   --wide: 980px;
 }
@@ -80,6 +82,18 @@ img {
   line-height: 1.18;
   letter-spacing: 0;
   overflow-wrap: break-word;
+}
+
+.brand-word {
+  white-space: nowrap;
+}
+
+.brand-m {
+  color: var(--brand-purple);
+}
+
+.brand-bench {
+  color: var(--brand-blue);
 }
 
 .publication-status {
@@ -624,6 +638,7 @@ td:nth-child(2) {
 
 .dataset-figure {
   margin: 0;
+  padding: 12px;
   border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
@@ -632,7 +647,9 @@ td:nth-child(2) {
 }
 
 .dataset-figure img {
-  width: 100%;
+  width: min(100%, 920px);
+  margin: 0 auto;
+  border-radius: 6px;
 }
 
 .code-panel,
