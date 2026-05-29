@@ -192,34 +192,12 @@ if (copyButton) {
   });
 }
 
-// Table Sorting & Expand/Collapse functionality
+// Table Sorting functionality
 function initTableInteractions() {
   const table = document.querySelector(".table-wrap table");
   if (!table) return;
 
-  // 1. Expand / Collapse Table
-  const leaderboardContainer = document.querySelector("#leaderboard .container");
-  const tableWrap = document.querySelector(".table-wrap");
-  
-  if (leaderboardContainer && tableWrap) {
-    const toggleBtn = document.createElement("button");
-    toggleBtn.textContent = "Hide Leaderboard";
-    toggleBtn.className = "copy-button"; 
-    toggleBtn.style.marginBottom = "15px";
-    
-    let isCollapsed = false;
-    toggleBtn.addEventListener("click", () => {
-      isCollapsed = !isCollapsed;
-      tableWrap.style.display = isCollapsed ? "none" : "block";
-      const note = document.querySelector(".table-note");
-      if (note) note.style.display = isCollapsed ? "none" : "block";
-      toggleBtn.textContent = isCollapsed ? "Show Leaderboard" : "Hide Leaderboard";
-    });
-    
-    leaderboardContainer.insertBefore(toggleBtn, tableWrap);
-  }
-
-  // 2. Column Sorting
+  // Column Sorting
   const headers = table.querySelectorAll("th");
   const tbody = table.querySelector("tbody");
   
