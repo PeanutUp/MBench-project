@@ -192,4 +192,85 @@ if (copyButton) {
   });
 }
 
+// Table Sorting & Expand/Collapse functionality
+function initTableInteractions() {
+  const table = document.querySelector(".table-wrap table");
+  if (!table) return;
+
+  // 1. Expand / Collapse Table
+  const leaderboardContainer = document.querySelector("#leaderboard .container");
+  const tableWrap = document.querySelector(".table-wrap");
+  
+  if (leaderboardContainer && tableWrap) {
+    const toggleBtn = document.createElement("button");
+    toggleBtn.textContent = "Hide Leaderboard";
+    toggleBtn.className = "copy-button"; 
+    toggleBtn.style.marginBottom = "15px";
+    
+    let isCollapsed = false;
+    toggleBtn.addEventListener("click", () => {
+      isCollapsed = !isCollapsed;
+      tableWrap.style.display = isCollapsed ? "none" : "block";
+      const note = document.querySelector(".table-note");
+      if (note) note.style.display = isCollapsed ? "none" : "block";
+      toggleBtn.textContent = isCollapsed ? "Show Leaderboard" : "Hide Leaderboard";
+    });
+    
+    leaderboardContainer.insertBefore(toggleBtn, tableWrap);
+  }
+
+  // 2. Column Sorting
+  const headers = table.querySelectorAll("th");
+  const tbody = table.querySelector("tbody");
+  
+  headers.forEach((th, index) => {
+    th.style.cursor = "pointer";
+    th.title = "Click to sort";
+    let sortAsc = false;
+    
+    th.addEventListener("click", () => {
+      // Clear visual sort indicators from other headers
+      headers.forEach(h => {
+        if (h !== th) h.innerHTML = h.innerHTML.replace(/( <span.*?>[↑↓]<\/span>)$/, "");
+      });
+      
+      sortAsc = !sortAsc;
+      
+      // Update this header's sort indicator
+      const text = th.innerHTML.replace(/( <span.*?>[↑↓]<\/span>)$/, "");
+      th.innerHTML = `${text} <span style="font-size:0.8em; opacity:0.7;">${sortAsc ? "↑" : "↓"}</span>`;
+      
+      // Sort rows
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+      rows.sort((a, b) => {
+        const valA = a.cells[index].innerText.trim();
+        const valB = b.cells[index].innerText.trim();
+        
+        // Parse float carefully (handle '-')
+        const numA = parseFloat(valA);
+        const numB = parseFloat(valB);
+        const isNumA = !isNaN(numA) && valA !== '-';
+        const isNumB = !isNaN(numB) && valB !== '-';
+        
+        if (isNumA && isNumB) {
+          return sortAsc ? numA - numB : numB - numA;
+        } else if (isNumA && !isNumB) {
+          // Numbers always sort before '-'
+          return sortAsc ? -1 : -1;
+        } else if (!isNumA && isNumB) {
+          return sortAsc ? 1 : 1;
+        } else {
+          return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        }
+      });
+      
+      // Re-append sorted rows
+      tbody.innerHTML = "";
+      rows.forEach(row => tbody.appendChild(row));
+    });
+  });
+}
+
+initTableInteractions();
+
 renderQualitative("entity");
