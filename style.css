@@ -491,6 +491,37 @@ th {
   white-space: nowrap;
 }
 
+th.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+th.sortable:hover {
+  color: var(--violet);
+  background: #f8f3ff;
+}
+
+th.sorted-asc,
+th.sorted-desc {
+  color: var(--violet);
+  background: #f4ecff;
+}
+
+.sort-label {
+  pointer-events: none;
+}
+
+.sort-indicator {
+  display: inline-block;
+  min-width: 0.8em;
+  margin-left: 4px;
+  color: #9b7bd1;
+  font-size: 0.9em;
+  font-weight: 800;
+  pointer-events: none;
+}
+
 td {
   color: var(--text);
   font-size: 12px;

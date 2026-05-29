@@ -300,7 +300,7 @@
         <h2 class="section-title">Evaluation Protocol</h2>
         <p class="section-intro">
           MBench uses Trigger-Conditioned Scoring to avoid rewarding models that preserve consistency only by avoiding the
-          memory challenge. A generated video must first enter the intended trigger state before memory reliability is scored.
+          memory challenge. A generated video must first enter the intended state before post-event consistency is scored.
         </p>
 
         <div class="protocol-grid">
@@ -322,7 +322,7 @@
           <article>
             <span>04</span>
             <h3>Score Reliability</h3>
-            <p>Evaluate consistency only on triggered samples, then combine reliability and trigger coverage with the M-Score harmonic mean.</p>
+            <p>Evaluate consistency only on valid samples, then aggregate the post-event consistency scores with the M-Score formulation.</p>
           </article>
         </div>
 
@@ -361,7 +361,7 @@
 
         <div class="dataset-stack">
           <figure class="dataset-figure">
-            <img src="assets/dist.png" alt="Prompt and action distribution statistics from MBench" />
+            <img src="assets/prompt-statistics.png" alt="Prompt and action distribution statistics from MBench" />
             <figcaption>Prompt suite statistics from the paper: prompt distribution, text prompt cloud, and action distribution.</figcaption>
           </figure>
 

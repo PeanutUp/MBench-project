@@ -197,54 +197,56 @@ function initTableInteractions() {
   const table = document.querySelector(".table-wrap table");
   if (!table) return;
 
-  // Column Sorting
-  const headers = table.querySelectorAll("th");
+  const headers = Array.from(table.querySelectorAll("th"));
   const tbody = table.querySelector("tbody");
-  
+  if (!tbody) return;
+
   headers.forEach((th, index) => {
-    th.style.cursor = "pointer";
-    th.title = "Click to sort";
-    let sortAsc = false;
-    
+    const label = th.textContent.trim();
+    th.classList.add("sortable");
+    th.dataset.label = label;
+    th.title = "Click column name to sort";
+    th.innerHTML = `<span class="sort-label"></span><span class="sort-indicator" aria-hidden="true"></span>`;
+    th.querySelector(".sort-label").textContent = label;
+
     th.addEventListener("click", () => {
-      // Clear visual sort indicators from other headers
-      headers.forEach(h => {
-        if (h !== th) h.innerHTML = h.innerHTML.replace(/( <span.*?>[↑↓]<\/span>)$/, "");
+      const nextDirection = th.dataset.sortDirection === "asc" ? "desc" : "asc";
+
+      headers.forEach((header) => {
+        header.classList.remove("sorted-asc", "sorted-desc");
+        header.removeAttribute("data-sort-direction");
+        header.setAttribute("aria-sort", "none");
+        const indicator = header.querySelector(".sort-indicator");
+        if (indicator) indicator.textContent = "";
       });
-      
-      sortAsc = !sortAsc;
-      
-      // Update this header's sort indicator
-      const text = th.innerHTML.replace(/( <span.*?>[↑↓]<\/span>)$/, "");
-      th.innerHTML = `${text} <span style="font-size:0.8em; opacity:0.7;">${sortAsc ? "↑" : "↓"}</span>`;
-      
-      // Sort rows
+
+      th.dataset.sortDirection = nextDirection;
+      th.classList.add(nextDirection === "asc" ? "sorted-asc" : "sorted-desc");
+      th.setAttribute("aria-sort", nextDirection === "asc" ? "ascending" : "descending");
+      const indicator = th.querySelector(".sort-indicator");
+      if (indicator) indicator.textContent = nextDirection === "asc" ? "↑" : "↓";
+
       const rows = Array.from(tbody.querySelectorAll("tr"));
       rows.sort((a, b) => {
         const valA = a.cells[index].innerText.trim();
         const valB = b.cells[index].innerText.trim();
-        
-        // Parse float carefully (handle '-')
         const numA = parseFloat(valA);
         const numB = parseFloat(valB);
-        const isNumA = !isNaN(numA) && valA !== '-';
-        const isNumB = !isNaN(numB) && valB !== '-';
-        
+        const isNumA = !Number.isNaN(numA) && valA !== "-";
+        const isNumB = !Number.isNaN(numB) && valB !== "-";
+
         if (isNumA && isNumB) {
-          return sortAsc ? numA - numB : numB - numA;
-        } else if (isNumA && !isNumB) {
-          // Numbers always sort before '-'
-          return sortAsc ? -1 : -1;
-        } else if (!isNumA && isNumB) {
-          return sortAsc ? 1 : 1;
-        } else {
-          return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+          return nextDirection === "asc" ? numA - numB : numB - numA;
         }
+
+        if (isNumA !== isNumB) {
+          return isNumA ? -1 : 1;
+        }
+
+        return nextDirection === "asc" ? valA.localeCompare(valB) : valB.localeCompare(valA);
       });
-      
-      // Re-append sorted rows
-      tbody.innerHTML = "";
-      rows.forEach(row => tbody.appendChild(row));
+
+      rows.forEach((row) => tbody.appendChild(row));
     });
   });
 }
