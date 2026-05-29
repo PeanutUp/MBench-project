@@ -93,7 +93,20 @@
     <section class="section teaser-section">
       <div class="container wide-container">
         <figure class="teaser-figure">
-          <img src="assets/paper-overview.png" alt="Overview of the MBench memory benchmark from the paper" />
+          <div class="teaser-images-wrap">
+            <div class="teaser-item">
+              <img src="assets/dimension.png" alt="MBench Dimension" />
+              <span class="teaser-label">(a) MBench Dimension</span>
+            </div>
+            <div class="teaser-item">
+              <img src="assets/mbench-v.png" alt="Text-Conditioned Models" />
+              <span class="teaser-label">(b) Text-Conditioned Models</span>
+            </div>
+            <div class="teaser-item">
+              <img src="assets/mbench-a.png" alt="Action-Conditioned Models" />
+              <span class="teaser-label">(c) Action-Conditioned Models</span>
+            </div>
+          </div>
           <figcaption>
             <strong>Overview of MBench.</strong>
             MBench evaluates memory capability through a three-level taxonomy and reports text-conditioned and
@@ -138,6 +151,14 @@
           the memory sub-dimensions for which valid automatic measurements are available in the paper.
         </p>
 
+        <div class="model-toggle-wrap">
+          <div class="model-toggle">
+            <button class="toggle-btn active" data-target="all">All Models</button>
+            <button class="toggle-btn" data-target="text">Text-Conditioned</button>
+            <button class="toggle-btn" data-target="action">Action-Conditioned</button>
+          </div>
+        </div>
+
         <div class="table-wrap">
           <table aria-label="MBench quantitative results">
             <thead>
@@ -159,20 +180,20 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>Memflow</td><td>Text</td><td>61.72</td><td>56.06</td><td>39.48</td><td>51.60</td><td>57.95</td><td>20.89</td><td>55.06</td><td>30.08</td><td>62.75</td><td>72.04</td><td>46.31</td><td>-</td></tr>
-              <tr><td>Self Forcing</td><td>Text</td><td>34.97</td><td>33.02</td><td>43.92</td><td>54.58</td><td>67.44</td><td>55.19</td><td>66.83</td><td>30.15</td><td>50.19</td><td>66.84</td><td>43.91</td><td>-</td></tr>
-              <tr><td>Skyreels V2</td><td>Text</td><td>70.03</td><td>53.70</td><td>24.57</td><td>53.76</td><td>49.01</td><td>56.39</td><td>46.44</td><td>20.33</td><td>68.35</td><td>79.52</td><td>44.68</td><td>-</td></tr>
-              <tr><td>LongLive</td><td>Text</td><td>63.57</td><td>55.41</td><td>42.51</td><td>55.89</td><td>46.68</td><td>27.51</td><td>59.44</td><td>25.26</td><td>70.32</td><td>74.69</td><td>46.97</td><td>-</td></tr>
-              <tr><td>LongCat-Video</td><td>Text</td><td>46.96</td><td>43.13</td><td>26.56</td><td>52.98</td><td>28.28</td><td>9.26</td><td>56.10</td><td>27.46</td><td>84.17</td><td>87.83</td><td>46.25</td><td>-</td></tr>
-              <tr><td>Cosmos-Predict 2.5</td><td>Text</td><td>51.90</td><td>47.31</td><td>16.95</td><td>45.42</td><td>9.73</td><td>14.68</td><td>55.95</td><td>22.66</td><td>83.67</td><td>80.81</td><td>45.08</td><td>-</td></tr>
-              <tr><td>Causal Forcing</td><td>Text</td><td>62.23</td><td>53.36</td><td>42.53</td><td>64.37</td><td>18.10</td><td>2.88</td><td>57.44</td><td>27.48</td><td>64.79</td><td>73.10</td><td>44.90</td><td>-</td></tr>
-              <tr><td>Helios</td><td>Text</td><td>79.43</td><td>63.70</td><td>31.33</td><td>41.64</td><td>24.79</td><td>32.46</td><td>41.79</td><td>25.26</td><td>58.27</td><td>75.08</td><td>43.17</td><td>-</td></tr>
+              <tr><td>Memflow</td><td>Text</td><td>61.72</td><td class="rank-2">56.06</td><td>39.48</td><td>51.60</td><td class="rank-2">57.95</td><td>20.89</td><td>55.06</td><td>30.08</td><td>62.75</td><td>72.04</td><td class="rank-2">46.31</td><td>-</td></tr>
+              <tr><td>Self Forcing</td><td>Text</td><td>34.97</td><td>33.02</td><td class="rank-1">43.92</td><td>54.58</td><td class="rank-1">67.44</td><td class="rank-2">55.19</td><td class="rank-1">66.83</td><td class="rank-1">30.15</td><td>50.19</td><td>66.84</td><td>43.91</td><td>-</td></tr>
+              <tr><td>Skyreels V2</td><td>Text</td><td class="rank-2">70.03</td><td>53.70</td><td>24.57</td><td>53.76</td><td>49.01</td><td class="rank-1">56.39</td><td>46.44</td><td>20.33</td><td>68.35</td><td>79.52</td><td>44.68</td><td>-</td></tr>
+              <tr><td>LongLive</td><td>Text</td><td>63.57</td><td>55.41</td><td>42.51</td><td class="rank-2">55.89</td><td>46.68</td><td>27.51</td><td class="rank-2">59.44</td><td>25.26</td><td>70.32</td><td>74.69</td><td class="rank-1">46.97</td><td>-</td></tr>
+              <tr><td>LongCat-Video</td><td>Text</td><td>46.96</td><td>43.13</td><td>26.56</td><td>52.98</td><td>28.28</td><td>9.26</td><td>56.10</td><td>27.46</td><td class="rank-1">84.17</td><td class="rank-1">87.83</td><td>46.25</td><td>-</td></tr>
+              <tr><td>Cosmos-Predict 2.5</td><td>Text</td><td>51.90</td><td>47.31</td><td>16.95</td><td>45.42</td><td>9.73</td><td>14.68</td><td>55.95</td><td>22.66</td><td class="rank-2">83.67</td><td class="rank-2">80.81</td><td>45.08</td><td>-</td></tr>
+              <tr><td>Causal Forcing</td><td>Text</td><td>62.23</td><td>53.36</td><td class="rank-2">42.53</td><td class="rank-1">64.37</td><td>18.10</td><td>2.88</td><td>57.44</td><td class="rank-2">27.48</td><td>64.79</td><td>73.10</td><td>44.90</td><td>-</td></tr>
+              <tr><td>Helios</td><td>Text</td><td class="rank-1">79.43</td><td class="rank-1">63.70</td><td>31.33</td><td>41.64</td><td>24.79</td><td>32.46</td><td>41.79</td><td>25.26</td><td>58.27</td><td>75.08</td><td>43.17</td><td>-</td></tr>
               <tr><td>Matrix-Game 2.0</td><td>Action</td><td>14.62</td><td>28.99</td><td>1.22</td><td>0.94</td><td>14.78</td><td>3.08</td><td>38.79</td><td>73.78</td><td>10.00</td><td>26.40</td><td>-</td><td>47.86</td></tr>
-              <tr><td>Matrix-Game 3.0</td><td>Action</td><td>44.15</td><td>58.22</td><td>42.38</td><td>47.91</td><td>61.99</td><td>32.86</td><td>62.06</td><td>95.17</td><td>37.50</td><td>48.80</td><td>-</td><td>81.93</td></tr>
-              <tr><td>HY-WorldPlay</td><td>Action</td><td>47.12</td><td>68.54</td><td>52.46</td><td>66.58</td><td>83.86</td><td>68.17</td><td>82.67</td><td>98.23</td><td>49.50</td><td>62.40</td><td>-</td><td>85.69</td></tr>
-              <tr><td>Yume-1.5</td><td>Action</td><td>60.96</td><td>49.99</td><td>17.41</td><td>40.57</td><td>51.86</td><td>24.55</td><td>51.21</td><td>92.05</td><td>97.90</td><td>95.00</td><td>-</td><td>62.20</td></tr>
-              <tr><td>Lingbot-World</td><td>Action</td><td>33.20</td><td>44.54</td><td>11.57</td><td>33.53</td><td>22.12</td><td>7.57</td><td>40.06</td><td>85.87</td><td>96.00</td><td>89.40</td><td>-</td><td>63.32</td></tr>
-              <tr><td>Infinite-World</td><td>Action</td><td>35.70</td><td>61.88</td><td>23.08</td><td>46.85</td><td>74.04</td><td>61.51</td><td>62.63</td><td>96.87</td><td>48.00</td><td>78.40</td><td>-</td><td>86.37</td></tr>
+              <tr><td>Matrix-Game 3.0</td><td>Action</td><td>44.15</td><td>58.22</td><td class="rank-2">42.38</td><td class="rank-2">47.91</td><td>61.99</td><td>32.86</td><td>62.06</td><td>95.17</td><td>37.50</td><td>48.80</td><td>-</td><td>81.93</td></tr>
+              <tr><td>HY-WorldPlay</td><td>Action</td><td class="rank-2">47.12</td><td class="rank-1">68.54</td><td class="rank-1">52.46</td><td class="rank-1">66.58</td><td class="rank-1">83.86</td><td class="rank-1">68.17</td><td class="rank-1">82.67</td><td class="rank-1">98.23</td><td>49.50</td><td>62.40</td><td>-</td><td class="rank-2">85.69</td></tr>
+              <tr><td>Yume-1.5</td><td>Action</td><td class="rank-1">60.96</td><td>49.99</td><td>17.41</td><td>40.57</td><td>51.86</td><td>24.55</td><td>51.21</td><td>92.05</td><td class="rank-1">97.90</td><td class="rank-1">95.00</td><td>-</td><td>62.20</td></tr>
+              <tr><td>Lingbot-World</td><td>Action</td><td>33.20</td><td>44.54</td><td>11.57</td><td>33.53</td><td>22.12</td><td>7.57</td><td>40.06</td><td>85.87</td><td class="rank-2">96.00</td><td class="rank-2">89.40</td><td>-</td><td>63.32</td></tr>
+              <tr><td>Infinite-World</td><td>Action</td><td>35.70</td><td class="rank-2">61.88</td><td>23.08</td><td>46.85</td><td class="rank-2">74.04</td><td class="rank-2">61.51</td><td class="rank-2">62.63</td><td class="rank-2">96.87</td><td>48.00</td><td>78.40</td><td>-</td><td class="rank-1">86.37</td></tr>
             </tbody>
           </table>
         </div>

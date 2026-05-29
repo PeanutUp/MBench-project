@@ -249,6 +249,39 @@ function initTableInteractions() {
   });
 }
 
+function initModelToggle() {
+  const table = document.querySelector(".table-wrap table");
+  const buttons = document.querySelectorAll(".model-toggle .toggle-btn");
+  if (!table || !buttons.length) return;
+
+  const tbody = table.querySelector("tbody");
+  if (!tbody) return;
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      // Update active state
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const target = btn.dataset.target; // "all", "text", "action"
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+
+      rows.forEach(row => {
+        // The setting type is in the second column (index 1)
+        const settingType = row.cells[1].innerText.trim().toLowerCase(); 
+        if (target === "all") {
+          row.style.display = "";
+        } else if (target === settingType) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    });
+  });
+}
+
 initTableInteractions();
+initModelToggle();
 
 renderQualitative("entity");

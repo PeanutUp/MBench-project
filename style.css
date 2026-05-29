@@ -251,6 +251,34 @@ img {
   padding-top: 24px;
 }
 
+.teaser-images-wrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  width: 100%;
+}
+
+.teaser-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.teaser-item img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.teaser-label {
+  margin-top: auto;
+  padding-top: 10px;
+  font-size: 15px;
+  color: var(--heading);
+  font-weight: 500;
+}
+
 .teaser-figure,
 .taxonomy-figure,
 .example-card {
@@ -395,6 +423,44 @@ img {
   background: var(--dark);
 }
 
+/* Model Type Toggle */
+.model-toggle-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.model-toggle {
+  display: inline-flex;
+  background: #f1f3f5;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.model-toggle .toggle-btn {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--muted);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.model-toggle .toggle-btn.active {
+  background: #fff;
+  color: var(--heading);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.model-toggle .toggle-btn:hover:not(.active) {
+  color: var(--heading);
+  background: rgba(255,255,255,0.5);
+}
+
 .table-wrap {
   min-width: 0;
   overflow-x: auto;
@@ -430,6 +496,23 @@ td {
   font-size: 12px;
 }
 
+td.rank-1 {
+  background-color: #e6ccff;
+  font-weight: 600;
+}
+
+td.rank-2 {
+  background-color: #f7e6ff;
+}
+
+tbody tr:hover td.rank-1 {
+  background-color: #d9b3ff;
+}
+
+tbody tr:hover td.rank-2 {
+  background-color: #f0d9ff;
+}
+
 tbody tr:last-child td {
   border-bottom: 0;
 }
@@ -450,54 +533,51 @@ td:nth-child(2) {
   background: #ffffff;
 }
 
-.axis-tabs {
+.axis-tabs, .sub-tabs {
   display: flex;
+  width: fit-content;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  background: #f1f3f5;
+  border-radius: 8px;
+  padding: 4px;
   margin: 0 auto 12px;
   max-width: var(--max);
 }
 
 .sub-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin: 0 auto 20px;
-  max-width: var(--max);
+  margin-bottom: 20px;
 }
 
 .axis-tab,
 .sub-tab {
-  min-height: 38px;
-  padding: 8px 14px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  color: var(--dark);
-  background: #ffffff;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-  width: auto;
-}
-
-.axis-tab {
-  min-height: 44px;
-  color: var(--text);
+  background: transparent;
+  border: none;
+  font-family: inherit;
   font-size: 15px;
+  color: var(--muted);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
 }
 
 .sub-tab {
-  color: var(--text);
   font-size: 14px;
 }
 
 .axis-tab.active,
 .sub-tab.active {
-  color: #ffffff;
-  border-color: var(--dark);
-  background: var(--dark);
+  background: #fff;
+  color: var(--heading);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.axis-tab:hover:not(.active),
+.sub-tab:hover:not(.active) {
+  color: var(--heading);
+  background: rgba(255,255,255,0.5);
 }
 
 .qualitative-panel {
@@ -796,10 +876,7 @@ code {
     flex-direction: column;
   }
 
-  .axis-tabs {
-    align-items: center;
-    flex-direction: column;
-  }
+  /* .axis-tabs will automatically wrap its items natively due to flex-wrap; removed flex-direction override */
 
   .case-header,
   .metric-card-grid,
