@@ -693,18 +693,42 @@ td:nth-child(2) {
   padding: 0 22px 18px;
 }
 
-.case-image-shell {
-  overflow: hidden;
+.video-comparison-container {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.video-wrapper {
+  flex: 1 1 0; /* Ensures both sides are exactly equal width */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-.case-image-shell img {
+.video-wrapper video {
   width: 100%;
-  min-height: 170px;
-  object-fit: contain;
-  background: #ffffff;
+  height: 100%;         /* Ensures it stretches vertically to match the other video */
+  object-fit: cover;    /* Completely fills the space without black padding */
+  background: transparent;
+  display: block;
+}
+
+.video-score {
+  width: 100%;
+  text-align: center;
+  padding: 8px 12px;
+  font-weight: 500;
+  color: var(--heading);
+  background-color: #fcfcfc;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
 }
 
 .case-visual figcaption,

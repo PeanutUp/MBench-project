@@ -237,10 +237,8 @@
             <h3>Causal Consistency</h3>
             <p>Evaluates whether generated worlds follow established physical and semantic rules through hidden intervals.</p>
             <ul>
-              <li>State evolution</li>
-              <li>Evolution correctness</li>
-              <li>Text-conditioned interaction</li>
-              <li>Action-conditioned interaction</li>
+              <li>Evolution</li>
+              <li>Prompt-Conditioned Instruction</li>
             </ul>
           </article>
         </div>
@@ -284,8 +282,21 @@
           </div>
 
           <figure class="case-visual">
-            <div class="case-image-shell">
-              <img id="memory-case-image" src="assets/case-entity.png" alt="Entity consistency failure case from the MBench paper" />
+            <div class="video-comparison-container" id="memory-video-container">
+              <div class="video-wrapper">
+                <video id="memory-video-1" autoplay loop muted playsinline controls>
+                  <source src="assets/placeholder.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <div class="video-score" id="memory-score-1">Score: 90</div>
+              </div>
+              <div class="video-wrapper">
+                <video id="memory-video-2" autoplay loop muted playsinline controls>
+                  <source src="assets/placeholder.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <div class="video-score" id="memory-score-2">Score: 85</div>
+              </div>
             </div>
             <figcaption id="memory-paper-caption">
               Entity memory failures appear when an object returns with changed geometry, texture, or identity after the memory challenge.
