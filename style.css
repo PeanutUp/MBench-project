@@ -544,6 +544,18 @@ tbody tr:hover td.rank-2 {
   background-color: #f0d9ff;
 }
 
+/* Disable rank colors when "All Models" is selected */
+table.hide-ranks td.rank-1,
+table.hide-ranks td.rank-2 {
+  background-color: transparent;
+  font-weight: normal;
+}
+
+table.hide-ranks tbody tr:hover td.rank-1,
+table.hide-ranks tbody tr:hover td.rank-2 {
+  background-color: transparent;
+}
+
 tbody tr:last-child td {
   border-bottom: 0;
 }

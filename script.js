@@ -266,6 +266,13 @@ function initModelToggle() {
       btn.classList.add("active");
 
       const target = btn.dataset.target; // "all", "text", "action"
+      
+      if (target === "all") {
+        table.classList.add("hide-ranks");
+      } else {
+        table.classList.remove("hide-ranks");
+      }
+
       const rows = Array.from(tbody.querySelectorAll("tr"));
 
       rows.forEach(row => {
