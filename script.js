@@ -12,8 +12,8 @@ const QUALITATIVE = {
         trigger: "Object exits and re-enters the field of view during a departure-return trajectory.",
         metric: "SSIM is computed inside SAM 2 object masks after warping the return view to the aligned forward view.",
         caption: "A geometry memory failure appears when the object returns with warped shape or missing structure.",
-        video1: "assets/geometry_1.mp4",
-        video2: "assets/geometry_2.mp4",
+        video1: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/geometry_1.mp4",
+        video2: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/geometry_2.mp4",
         score1: "58.38",
         score2: "0.05"
       },
