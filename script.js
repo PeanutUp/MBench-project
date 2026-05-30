@@ -25,8 +25,8 @@ const QUALITATIVE = {
         trigger: "The target object is occluded or revisited after camera movement.",
         metric: "DINOv2 features are extracted from SAM 2 masks and compared against the global object-track centroid.",
         caption: "Texture consistency catches cases where the object category remains but the remembered details drift.",
-        video1: "assets/texture_1.mp4",
-        video2: "assets/texture_2.mp4",
+        video1: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/texture_1.mp4",
+        video2: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/texture_2.mp4",
         score1: "67.49",
         score2: "9.14"
       },
@@ -38,8 +38,8 @@ const QUALITATIVE = {
         trigger: "A human face appears across non-adjacent frames after motion, occlusion, or re-entry.",
         metric: "ArcFace embeddings are tracked with rolling-average matching and scored by centroid-based cosine similarity.",
         caption: "Identity consistency is evaluated separately because human subjects require persistent facial identity, not just visual similarity.",
-        video1: "assets/identity_1.mp4",
-        video2: "assets/identity_2.mp4",
+        video1: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/identity_1.mp4",
+        video2: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/identity_2.mp4",
         score1: "85.35",
         score2: "0.00"
       },
@@ -51,8 +51,8 @@ const QUALITATIVE = {
         trigger: "A person leaves view, is temporarily occluded, or is revisited in a later segment.",
         metric: "SAM 2 full-body masks and DINOv2 semantic embeddings measure appearance invariance across the subject track.",
         caption: "Appearance consistency catches clothing, accessory, and body-level drift that may occur even when identity is preserved.",
-        video1: "assets/appearance_1.mp4",
-        video2: "assets/appearance_2.mp4",
+        video1: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/appearance_1.mp4",
+        video2: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/appearance_2.mp4",
         score1: "46.64",
         score2: "0.00"
       }
@@ -71,8 +71,8 @@ const QUALITATIVE = {
         trigger: "The camera departs from and later returns to a comparable viewpoint.",
         metric: "DA3-estimated poses define fundamental matrices; matched point pairs are scored by epipolar line distance.",
         caption: "Epipolar errors reveal spatial memory failures that are not visible from local frame quality alone.",
-        video1: "assets/epipolar1.mp4",
-        video2: "assets/epipolar2.mp4",
+        video1: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/epipolar1.mp4",
+        video2: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/epipolar2.mp4",
         score1: "57.56",
         score2: "45.02"
       },
@@ -84,8 +84,8 @@ const QUALITATIVE = {
         trigger: "Two distant frames provide comparable non-adjacent views for spatial reconstruction.",
         metric: "Matched points are triangulated using DA3 camera parameters and scored by 3D-to-2D reprojection error.",
         caption: "Reprojection consistency tests whether the generated scene returns to the same 3D configuration.",
-        video1: "assets/reprojection1.mp4",
-        video2: "assets/reprojection2.mp4",
+        video1: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/reprojection1.mp4",
+        video2: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/reprojection2.mp4",
         score1: "67.85",
         score2: "1.55"
       },
@@ -97,8 +97,8 @@ const QUALITATIVE = {
         trigger: "A scene is revisited after a departure-return trajectory.",
         metric: "CIELAB lightness maps and color-channel means are compared with a weighted illumination and color-shift deviation.",
         caption: "Lighting consistency detects unsupported changes in illumination when the model revisits a remembered scene.",
-        video1: "assets/lighting1.mp4",
-        video2: "assets/lighting2.mp4",
+        video1: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/lighting1.mp4",
+        video2: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/lighting2.mp4",
         score1: "90.79",
         score2: "22.99"
       },
@@ -110,8 +110,8 @@ const QUALITATIVE = {
         trigger: "The model generates a continuous long-horizon rollout.",
         metric: "VGG feature Gram matrices are compared with Frobenius distance to measure style changes through time.",
         caption: "Style consistency separates global rendering drift from geometric or entity-level memory errors.",
-        video1: "assets/style1.mp4",
-        video2: "assets/style2.mp4",
+        video1: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/style1.mp4",
+        video2: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/style2.mp4",
         score1: "95.07",
         score2: "57.26"
       }
@@ -130,8 +130,8 @@ const QUALITATIVE = {
         trigger: "A prompt describes a process that should progress while the relevant region is outside the field of view.",
         metric: "A VLM assigns a state-evolution and correctness score, ensuring the process is actuated and plausible.",
         caption: "Evolution rewards videos that both trigger the hidden event and preserve plausible causal consequences when the object returns.",
-        video1: "assets/evolution1.mp4",
-        video2: "assets/evolution2.mp4",
+        video1: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/evolution1.mp4",
+        video2: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/evolution2.mp4",
         score1: "100",
         score2: "0"
       },
@@ -143,8 +143,8 @@ const QUALITATIVE = {
         trigger: "A multi-segment context or action sequence specifies what should happen or how the camera should move.",
         metric: "Evaluated either by OpenCLIP embeddings for text adherence or DA3-estimated camera extrinsics for action alignment.",
         caption: "Instruction interaction tests whether the model responds to control signals and external prompts over time.",
-        video1: "assets/prompt2.mp4",
-        video2: "assets/prompt1.mp4",
+        video1: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/prompt2.mp4",
+        video2: "https://huggingface.co/datasets/PeanutUp/PeanutUpproject-page-videos/resolve/main/assets/prompt1.mp4",
         score1: "29.49",
         score2: "18.73"
       }
