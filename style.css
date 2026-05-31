@@ -599,7 +599,7 @@ td:nth-child(2) {
   background: #ffffff;
 }
 
-.axis-tabs, .sub-tabs {
+.axis-tabs {
   display: flex;
   width: fit-content;
   flex-wrap: wrap;
@@ -611,16 +611,11 @@ td:nth-child(2) {
   max-width: var(--max);
 }
 
-.sub-tabs {
-  margin-bottom: 20px;
-}
-
-.axis-tab,
-.sub-tab {
+.axis-tab {
   background: transparent;
   border: none;
   font-family: inherit;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--muted);
   padding: 8px 16px;
   border-radius: 6px;
@@ -629,18 +624,48 @@ td:nth-child(2) {
   font-weight: 500;
 }
 
-.sub-tab {
-  font-size: 14px;
+.axis-tab.active {
+  background: #fff;
+  color: var(--heading);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.axis-tab.active,
+.axis-tab:hover:not(.active) {
+  color: var(--heading);
+  background: rgba(255,255,255,0.5);
+}
+
+.sub-tabs {
+  display: flex;
+  width: fit-content;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #f1f3f5;
+  border-radius: 8px;
+  padding: 4px;
+  margin: 0 auto 20px;
+  max-width: var(--max);
+}
+
+.sub-tab {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--muted);
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
 .sub-tab.active {
   background: #fff;
   color: var(--heading);
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.axis-tab:hover:not(.active),
 .sub-tab:hover:not(.active) {
   color: var(--heading);
   background: rgba(255,255,255,0.5);
@@ -680,47 +705,86 @@ td:nth-child(2) {
   color: var(--muted);
 }
 
-.metric-card-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  padding: 0 22px 18px;
-}
-
-.metric-card {
-  min-width: 0;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--softer);
-  padding: 13px;
-}
-
-.metric-card span {
-  display: block;
-  color: var(--violet);
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.metric-card strong {
-  display: block;
-  margin-top: 8px;
-  color: var(--heading);
-  font-size: 15px;
-  line-height: 1.35;
-}
-
 .case-visual {
   margin: 0;
   padding: 0 22px 18px;
+}
+
+/* Carousel */
+.carousel-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px;
+}
+
+.carousel-viewport {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.carousel-slides {
+  display: flex;
+  transition: transform 0.35s ease;
+}
+
+.carousel-slide {
+  min-width: 100%;
+}
+
+.carousel-btn {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--heading);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.carousel-btn:hover {
+  background: #f1f3f5;
+  border-color: #ccc;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 0 4px;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.carousel-dot.active {
+  background: var(--heading);
+  border-color: var(--heading);
+}
+
+.carousel-dot:hover:not(.active) {
+  background: #e0e0e0;
 }
 
 .video-comparison-container {
   display: flex;
   gap: 16px;
   width: 100%;
-  margin-bottom: 12px;
 }
 
 .video-wrapper {
@@ -969,7 +1033,6 @@ code {
   /* .axis-tabs will automatically wrap its items natively due to flex-wrap; removed flex-direction override */
 
   .case-header,
-  .metric-card-grid,
   .case-visual {
     padding-left: 14px;
     padding-right: 14px;

@@ -248,12 +248,11 @@
       </div>
     </section>
 
-    <section class="section qualitative-section" id="qualitative">
+	        <section class="section qualitative-section" id="qualitative">
       <div class="container wide-container">
         <h2 class="section-title">Qualitative Video Comparisons by Memory Dimension</h2>
         <p class="section-intro">
-          Switch between the memory axes and sub-dimensions to inspect the trigger condition, metric definition, and the
-          corresponding visual evidence used for diagnosis.
+          Select a memory dimension and sub-dimension to inspect paired video comparisons with per-dimension scoring.
         </p>
 
         <div class="axis-tabs" role="tablist" aria-label="Memory dimensions">
@@ -266,45 +265,22 @@
 
         <div class="qualitative-panel">
           <div class="case-header">
-            <p class="axis-label" id="memory-axis-label">Entity Consistency</p>
+            <p class="axis-label" id="memory-axis-label">Object Consistency</p>
             <h3 id="memory-title">Object Geometry Consistency</h3>
             <p id="memory-summary">
               Check whether the geometric structure of a target object is preserved after departure-return camera motion.
             </p>
           </div>
 
-          <div class="metric-card-grid">
-            <article class="metric-card">
-              <span>Trigger</span>
-              <strong id="memory-trigger">Object exits and re-enters the field of view.</strong>
-            </article>
-            <article class="metric-card">
-              <span>Metric</span>
-              <strong id="memory-metric">SSIM within SAM 2 object masks after viewpoint-aligned warping.</strong>
-            </article>
+          <div class="carousel-container">
+            <button class="carousel-btn carousel-prev" type="button" aria-label="Previous slide">&larr;</button>
+            <div class="carousel-viewport">
+              <div class="carousel-slides" id="carousel-slides"></div>
+            </div>
+            <button class="carousel-btn carousel-next" type="button" aria-label="Next slide">&rarr;</button>
           </div>
 
-          <figure class="case-visual">
-            <div class="video-comparison-container" id="memory-video-container">
-              <div class="video-wrapper">
-                <video id="memory-video-1" autoplay loop muted playsinline controls>
-                  <source src="assets/placeholder.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <div class="video-score" id="memory-score-1">Score: 90</div>
-              </div>
-              <div class="video-wrapper">
-                <video id="memory-video-2" autoplay loop muted playsinline controls>
-                  <source src="assets/placeholder.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <div class="video-score" id="memory-score-2">Score: 85</div>
-              </div>
-            </div>
-            <figcaption id="memory-paper-caption">
-              Entity memory failures appear when an object returns with changed geometry, texture, or identity after the memory challenge.
-            </figcaption>
-          </figure>
+          <div class="carousel-dots" id="carousel-dots"></div>
         </div>
       </div>
     </section>
